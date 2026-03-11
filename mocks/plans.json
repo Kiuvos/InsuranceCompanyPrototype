@@ -3,6 +3,8 @@
     "id": "vida-basico",
     "name": "Seguro de Vida - Basico",
     "type": "vida",
+    "description": "Protege la tranquilidad de tu familia con cobertura esencial y respaldo oportuno.",
+    "image": "/insurance/vida.svg",
     "basePrice": 39000,
     "coverages": [
       "Cobertura por fallecimiento",
@@ -14,7 +16,24 @@
   {
     "id": "vida-estandar",
     "name": "Seguro de Vida - Estandar",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "type": "vida",
+    "description": "Mayor respaldo para tu familia con coberturas ampliadas ante eventos inesperados.",
+    "image": "/insurance/vida.svg",
     "basePrice": 69000,
     "coverages": [
       "Cobertura por fallecimiento ampliada",
@@ -26,7 +45,24 @@
   {
     "id": "vida-premium",
     "name": "Seguro de Vida - Premium",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "type": "vida",
+    "description": "Protección integral para tu proyecto de vida, con beneficios diferenciados.",
+    "image": "/insurance/vida.svg",
     "basePrice": 109000,
     "coverages": [
       "Cobertura integral por fallecimiento",
@@ -38,7 +74,24 @@
   {
     "id": "billetera-basico",
     "name": "Poliza de Billetera - Basico",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "type": "billetera",
+    "description": "Cubre lo esencial de tus documentos y medios de pago en casos de robo o pérdida.",
+    "image": "/insurance/billetera.svg",
     "basePrice": 15000,
     "coverages": [
       "Robo de documentos",
@@ -51,6 +104,8 @@
     "id": "billetera-estandar",
     "name": "Poliza de Billetera - Estandar",
     "type": "billetera",
+    "description": "Suma protección frente a fraude y trámites derivados de incidentes con tu billetera.",
+    "image": "/insurance/billetera.svg",
     "basePrice": 24000,
     "coverages": [
       "Robo de billetera y documentos",
@@ -66,6 +121,8 @@
     "id": "billetera-premium",
     "name": "Poliza de Billetera - Premium",
     "type": "billetera",
+    "description": "Máxima cobertura para documentos, pagos y defensa ante afectaciones a terceros.",
+    "image": "/insurance/billetera.svg",
     "basePrice": 36000,
     "coverages": [
       "Robo con cobertura ampliada",
@@ -81,39 +138,72 @@
     "id": "mascota-basico",
     "name": "Seguro de Mascota - Basico",
     "type": "mascota",
-    "basePrice": 29000,
+    "description": "Cuida a tu mascota con coberturas esenciales de salud y respaldo civil básico.",
+    "image": "/insurance/mascota.webp",
+    "basePrice": 18000,
     "coverages": [
-      "Consulta veterinaria general",
-      "Vacunacion basica",
-      "Asistencia telefonica veterinaria"
+      "Gastos medicos por accidente: 1 evento por ano hasta $250.000",
+      "Servicio de eutanasia por enfermedad o accidente: hasta $300.000",
+      "Asistencia funeraria (funeraria o cremacion): hasta $300.000",
+      "Consulta medica veterinaria a domicilio por accidente: no aplica",
+      "Guarderia por accidente o enfermedad del asegurado: no aplica",
+      "Muerte accidental de la mascota: no aplica",
+      "Responsabilidad civil - danos a terceros: hasta $10.000.000",
+      "Responsabilidad civil - lesiones o muerte a terceros: hasta $10.000.000",
+      "Responsabilidad civil - gastos medicos de urgencia: 4 eventos por ano hasta $500.000 por evento",
+      "Responsabilidad civil - gastos de defensa: hasta $3.000.000"
     ],
-    "additionalBenefits": ["Descuentos en pet shop", "Orientacion nutricional"]
+    "additionalBenefits": [
+      "Plan basico con proteccion esencial para la mascota",
+      "Responsabilidad civil extracontractual incluida"
+    ]
   },
   {
     "id": "mascota-estandar",
     "name": "Seguro de Mascota - Estandar",
     "type": "mascota",
-    "basePrice": 47000,
+    "description": "Más tranquilidad para tu mascota con coberturas ampliadas y mejor protección civil.",
+    "image": "/insurance/mascota.webp",
+    "basePrice": 25200,
     "coverages": [
-      "Urgencias veterinarias",
-      "Examenes de laboratorio",
-      "Medicamentos basicos"
+      "Gastos medicos por accidente: 2 eventos por ano hasta $250.000 por evento",
+      "Servicio de eutanasia por enfermedad o accidente: hasta $350.000",
+      "Asistencia funeraria (funeraria o cremacion): hasta $350.000",
+      "Consulta medica veterinaria a domicilio por accidente: 2 eventos por ano hasta $60.000",
+      "Guarderia por accidente o enfermedad del asegurado: hasta 4 dias, maximo 3 eventos por ano",
+      "Muerte accidental de la mascota: hasta $500.000",
+      "Responsabilidad civil - danos a terceros: hasta $15.000.000",
+      "Responsabilidad civil - lesiones o muerte a terceros: hasta $15.000.000",
+      "Responsabilidad civil - gastos medicos de urgencia: 4 eventos por ano hasta $750.000 por evento",
+      "Responsabilidad civil - gastos de defensa: hasta $4.500.000"
     ],
     "additionalBenefits": [
-      "Baño y peluqueria con descuento",
-      "Asistencia para extravio"
+      "Plan estandar con coberturas ampliadas",
+      "Responsabilidad civil extracontractual incluida"
     ]
   },
   {
     "id": "mascota-premium",
     "name": "Seguro de Mascota - Premium",
     "type": "mascota",
-    "basePrice": 69000,
+    "description": "Cobertura integral para emergencias, bienestar y responsabilidad civil de alto nivel.",
+    "image": "/insurance/mascota.webp",
+    "basePrice": 32400,
     "coverages": [
-      "Hospitalizacion y cirugia",
-      "Urgencias 24/7",
-      "Examenes especializados"
+      "Gastos medicos por accidente: 3 eventos por ano hasta $250.000 por evento",
+      "Servicio de eutanasia por enfermedad o accidente: hasta $400.000",
+      "Asistencia funeraria (funeraria o cremacion): hasta $400.000",
+      "Consulta medica veterinaria a domicilio por accidente: 3 eventos por ano hasta $120.000",
+      "Guarderia por accidente o enfermedad del asegurado: hasta 8 dias, maximo 3 eventos por ano",
+      "Muerte accidental de la mascota: hasta $1.000.000",
+      "Responsabilidad civil - danos a terceros: hasta $20.000.000",
+      "Responsabilidad civil - lesiones o muerte a terceros: hasta $20.000.000",
+      "Responsabilidad civil - gastos medicos de urgencia: 4 eventos por ano hasta $1.000.000 por evento",
+      "Responsabilidad civil - gastos de defensa: hasta $6.000.000"
     ],
-    "additionalBenefits": ["Cobertura en viaje", "Asistencia de adiestramiento"]
+    "additionalBenefits": [
+      "Plan premium con cobertura integral",
+      "Responsabilidad civil extracontractual incluida"
+    ]
   }
 ]

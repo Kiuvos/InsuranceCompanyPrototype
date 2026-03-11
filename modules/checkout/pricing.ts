@@ -1,7 +1,5 @@
 import { PaymentPeriodicity, Plan } from "@/types/plan";
 
-export const TAX_RATE = 0.19;
-
 export interface PricingBreakdown {
   subtotal: number;
   taxes: number;
@@ -13,9 +11,7 @@ export function getPlanPriceByPeriodicity(
   periodicity: PaymentPeriodicity,
 ): number {
   if (periodicity === "anual") {
-    const annualWithoutDiscount = basePrice * 12;
-    const annualDiscount = annualWithoutDiscount * 0.08;
-    return Math.round(annualWithoutDiscount - annualDiscount);
+    return basePrice * 12;
   }
 
   return basePrice;
@@ -26,8 +22,8 @@ export function getPricingBreakdown(
   periodicity: PaymentPeriodicity,
 ): PricingBreakdown {
   const subtotal = getPlanPriceByPeriodicity(plan.basePrice, periodicity);
-  const taxes = Math.round(subtotal * TAX_RATE);
-  const total = subtotal + taxes;
+  const taxes = 0;
+  const total = subtotal;
 
   return {
     subtotal,

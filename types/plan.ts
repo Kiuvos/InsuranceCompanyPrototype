@@ -6,9 +6,22 @@ export interface Plan {
   id: string;
   name: string;
   type: InsuranceType;
+  description?: string;
+  image?: string;
+  extraData?: PlanExtraDataField[];
   basePrice: number;
   coverages: string[];
   additionalBenefits?: string[];
+}
+
+export interface PlanExtraDataField {
+  key: string;
+  label: string;
+  type: "text" | "number" | "select";
+  options?: Array<{
+    label: string;
+    value: string;
+  }>;
 }
 
 export interface CheckoutPersonalData {
@@ -29,6 +42,7 @@ export interface CheckoutPayload {
   periodicity: PaymentPeriodicity;
   paymentMethod: "tarjeta" | "pse";
   personalData: CheckoutPersonalData;
+  extraData?: Record<string, string>;
 }
 
 export interface CheckoutResponse {

@@ -46,18 +46,14 @@ export function PriceSimulator({
               : "bg-white text-slate-700"
           }`}
         >
-          Anual (-8%)
+          Anual
         </button>
       </div>
 
       <dl className="mt-4 space-y-2 text-sm text-slate-700">
         <div className="flex items-center justify-between">
-          <dt>Subtotal</dt>
+          <dt>Valor (impuestos incluidos)</dt>
           <dd>{formatCOP(breakdown.subtotal)}</dd>
-        </div>
-        <div className="flex items-center justify-between">
-          <dt>Impuestos (19%)</dt>
-          <dd>{formatCOP(breakdown.taxes)}</dd>
         </div>
         <div className="flex items-center justify-between border-t border-brand/20 pt-2 text-base font-bold text-slate-900">
           <dt>Total</dt>

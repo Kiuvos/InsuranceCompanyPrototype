@@ -5,14 +5,22 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getPlans, processCheckout } from "@/services/api";
 import { formatCOP, getPricingBreakdown } from "@/modules/checkout/pricing";
-import { CheckoutPersonalData, PaymentPeriodicity, Plan } from "@/types/plan";
+import {
+  CheckoutPersonalData,
+  InsuranceType,
+  PaymentPeriodicity,
+  PlanExtraDataField,
+  Plan,
+} from "@/types/plan";
 
-const steps = ["Datos personales", "Confirmación del plan", "Método de pago"];
+const steps = ["Confirmación del plan", "Datos personales", "Método de pago"];
 
 export default function CheckoutPage() {
   const router = useRouter();
 
   const [plans, setPlans] = useState<Plan[]>([]);
+  const [selectedInsuranceType, setSelectedInsuranceType] =
+    useState<InsuranceType | null>(null);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -43,19 +51,39 @@ export default function CheckoutPage() {
     cardCvv: "",
   });
   const [pseBank, setPseBank] = useState("");
+  const [extraDataValues, setExtraDataValues] = useState<Record<string, string>>(
+    {},
+  );
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadPlans() {
       const urlParams = new URLSearchParams(window.location.search);
       const queryPlanId = urlParams.get("planId") ?? "";
+      const queryInsuranceTypeRaw = urlParams.get("insuranceType");
       const queryPeriodicity =
         urlParams.get("periodicity") === "anual" ? "anual" : "mensual";
+      const queryInsuranceType: InsuranceType | null =
+        queryInsuranceTypeRaw === "vida" ||
+        queryInsuranceTypeRaw === "billetera" ||
+        queryInsuranceTypeRaw === "mascota"
+          ? queryInsuranceTypeRaw
+          : null;
 
       const data = await getPlans();
+      const scopedPlans = queryInsuranceType
+        ? data.filter((plan) => plan.type === queryInsuranceType)
+        : data;
+      const validQueryPlanId = scopedPlans.some(
+        (plan) => plan.id === queryPlanId,
+      )
+        ? queryPlanId
+        : "";
+
+      setSelectedInsuranceType(queryInsuranceType);
       setPeriodicity(queryPeriodicity);
-      setPlans(data);
-      setPlanId((prev) => prev || queryPlanId || data[0]?.id || "");
+      setPlans(scopedPlans);
+      setPlanId((prev) => prev || validQueryPlanId || scopedPlans[0]?.id || "");
     }
 
     loadPlans();
@@ -65,6 +93,10 @@ export default function CheckoutPage() {
     () => plans.find((plan) => plan.id === planId) ?? null,
     [planId, plans],
   );
+  const selectedPlanExtraDataFields = useMemo<PlanExtraDataField[]>(() => {
+    return selectedPlan?.extraData ?? [];
+  }, [selectedPlan]);
+
   const breakdown = useMemo(() => {
     if (!selectedPlan) return null;
     return getPricingBreakdown(selectedPlan, periodicity);
@@ -73,7 +105,7 @@ export default function CheckoutPage() {
   const validateStep = () => {
     setError(null);
 
-    if (step === 1) {
+    if (step === 2) {
       const {
         fullName,
         documentType,
@@ -105,6 +137,17 @@ export default function CheckoutPage() {
       if (!emailValid) {
         setError("Ingresa un correo válido");
         return false;
+      }
+
+      if (selectedPlanExtraDataFields.length) {
+        const missingField = selectedPlanExtraDataFields.find(
+          (field) => !extraDataValues[field.key],
+        );
+
+        if (missingField) {
+          setError(`Completa el campo ${missingField.label}`);
+          return false;
+        }
       }
     }
 
@@ -155,6 +198,7 @@ export default function CheckoutPage() {
         periodicity,
         paymentMethod,
         personalData,
+        extraData: extraDataValues,
       });
 
       if (response.ok) {
@@ -202,13 +246,93 @@ export default function CheckoutPage() {
         <div className="rounded-xl border border-slate-200 bg-white p-5">
           {step === 1 ? (
             <div className="space-y-4">
-              <h2 className="text-xl font-bold text-slate-900">
-                Paso 1: Datos personales
+              <h2 className="title-primary text-xl">
+                Paso 1: Confirmación del plan
               </h2>
-              <h4 className="text-sm text-slate-700">
-                Al continuar autoriza a ASEGURAT LTDA para hacer uso de sus
-                datos conforme a la ley Ley 1581 de 2012.
-              </h4>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <select
+                  value={planId}
+                  onChange={(event) => setPlanId(event.target.value)}
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                >
+                  {plans.map((plan) => (
+                    <option key={plan.id} value={plan.id}>
+                      {plan.name}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={periodicity}
+                  onChange={(event) =>
+                    setPeriodicity(event.target.value as PaymentPeriodicity)
+                  }
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                >
+                  <option value="mensual">Mensual</option>
+                  <option value="anual">Anual</option>
+                </select>
+              </div>
+
+              {selectedInsuranceType ? (
+                <p className="text-sm text-slate-600">
+                  Tipo seleccionado: <strong>{selectedInsuranceType}</strong>
+                </p>
+              ) : null}
+
+              {selectedPlan && breakdown ? (
+                <div className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">
+                  {selectedPlan.image ? (
+                    <img
+                      src={selectedPlan.image}
+                      alt={selectedPlan.name}
+                      className="mb-3 h-40 w-full rounded-lg object-cover"
+                    />
+                  ) : null}
+
+                  <p className="font-semibold text-slate-900">
+                    {selectedPlan.name}
+                  </p>
+                  {selectedPlan.description ? (
+                    <p className="mt-2 text-slate-600">
+                      {selectedPlan.description}
+                    </p>
+                  ) : null}
+
+                  <div className="mt-4 border-t border-slate-200 pt-3">
+                    <p className="font-semibold text-slate-900">
+                      ¿Qué incluye?
+                    </p>
+                    <ul className="mt-2 space-y-1">
+                      {selectedPlan.coverages.map((coverage) => (
+                        <li key={coverage}>• {coverage}</li>
+                      ))}
+                    </ul>
+
+                    {selectedPlan.additionalBenefits?.length ? (
+                      <>
+                        <p className="mt-3 font-semibold text-slate-900">
+                          Beneficios adicionales
+                        </p>
+                        <ul className="mt-2 space-y-1">
+                          {selectedPlan.additionalBenefits.map((benefit) => (
+                            <li key={benefit}>• {benefit}</li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
+          {step === 2 ? (
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-slate-900">
+                Paso 2: Datos personales
+              </h2>
               <div className="grid gap-4 md:grid-cols-2">
                 <input
                   value={personalData.fullName}
@@ -333,52 +457,54 @@ export default function CheckoutPage() {
                   className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                 />
               </div>
-            </div>
-          ) : null}
 
-          {step === 2 ? (
-            <div className="space-y-4">
-              <h2 className="title-primary text-xl">
-                Paso 2: Confirmación del plan
-              </h2>
+              {selectedPlanExtraDataFields.length ? (
+                <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                  <h3 className="text-base font-bold text-slate-900">
+                    DATOS DE MASCOTA
+                  </h3>
+                  <div className="mt-3 grid gap-4 md:grid-cols-2">
+                    {selectedPlanExtraDataFields.map((field) => {
+                      if (field.type === "select") {
+                        return (
+                          <select
+                            key={field.key}
+                            value={extraDataValues[field.key] ?? ""}
+                            onChange={(event) =>
+                              setExtraDataValues((prev) => ({
+                                ...prev,
+                                [field.key]: event.target.value,
+                              }))
+                            }
+                            className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          >
+                            <option value="">{field.label}</option>
+                            {(field.options ?? []).map((option) => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
+                        );
+                      }
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <select
-                  value={planId}
-                  onChange={(event) => setPlanId(event.target.value)}
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                >
-                  {plans.map((plan) => (
-                    <option key={plan.id} value={plan.id}>
-                      {plan.name}
-                    </option>
-                  ))}
-                </select>
-
-                <select
-                  value={periodicity}
-                  onChange={(event) =>
-                    setPeriodicity(event.target.value as PaymentPeriodicity)
-                  }
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                >
-                  <option value="mensual">Mensual</option>
-                  <option value="anual">Anual (-8%)</option>
-                </select>
-              </div>
-
-              {selectedPlan && breakdown ? (
-                <div className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700">
-                  <p className="font-semibold text-slate-900">
-                    {selectedPlan.name}
-                  </p>
-                  <p className="mt-2">
-                    Subtotal: {formatCOP(breakdown.subtotal)}
-                  </p>
-                  <p>Impuestos: {formatCOP(breakdown.taxes)}</p>
-                  <p className="font-bold">
-                    Total: {formatCOP(breakdown.total)}
-                  </p>
+                      return (
+                        <input
+                          key={field.key}
+                          type={field.type === "number" ? "number" : "text"}
+                          value={extraDataValues[field.key] ?? ""}
+                          onChange={(event) =>
+                            setExtraDataValues((prev) => ({
+                              ...prev,
+                              [field.key]: event.target.value,
+                            }))
+                          }
+                          placeholder={field.label}
+                          className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -529,7 +655,11 @@ export default function CheckoutPage() {
         </div>
 
         <aside className="rounded-xl border border-slate-200 bg-white p-5">
-          <h2 className="title-primary text-lg">Resumen en tiempo real</h2>
+          <h2 className="title-primary text-lg">Resumen </h2>
+          <h4 className="text-sm text-slate-700">
+            Al continuar autoriza a ASEGURAT LTDA para hacer uso de sus datos
+            conforme a la ley Ley 1581 de 2012.
+          </h4>
           {selectedPlan && breakdown ? (
             <div className="mt-3 space-y-2 text-sm text-slate-700">
               <p>
@@ -537,8 +667,9 @@ export default function CheckoutPage() {
               </p>
               <p>Tipo: {selectedPlan.type}</p>
               <p>Frecuencia: {periodicity}</p>
-              <p>Subtotal: {formatCOP(breakdown.subtotal)}</p>
-              <p>Impuestos: {formatCOP(breakdown.taxes)}</p>
+              <p>
+                Valor (impuestos incluidos): {formatCOP(breakdown.subtotal)}
+              </p>
               <p className="text-base font-bold text-slate-900">
                 Total: {formatCOP(breakdown.total)}
               </p>
@@ -550,15 +681,11 @@ export default function CheckoutPage() {
           )}
 
           <div className="mt-5 border-t border-slate-200 pt-4 text-sm text-slate-600">
-            <p>
-              RNF de seguridad (fase real): HTTPS, encriptación y protección de
-              datos.
-            </p>
             <Link
               href="/plans"
               className="mt-2 inline-block font-semibold text-brand hover:text-brand-strong"
             >
-              Modificar plan
+              Cambiar Plan
             </Link>
           </div>
         </aside>

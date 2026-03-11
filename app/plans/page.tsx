@@ -2,31 +2,80 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { PlanCard } from "@/components/PlanCard";
 import { PriceSimulator } from "@/components/PriceSimulator";
 
-import { PaymentPeriodicity, Plan } from "@/types/plan";
+import { InsuranceType, PaymentPeriodicity, Plan } from "@/types/plan";
 import { usePlans } from "@/modules/plans/usePlans";
+
+const INSURANCE_LABELS: Record<InsuranceType, string> = {
+  vida: "Seguro de Vida",
+  billetera: "Póliza de Billetera",
+  mascota: "Seguro de Mascota",
+};
 
 export default function PlansPage() {
   const router = useRouter();
-  const { filteredPlans, loading, error, selectedType, setSelectedType } =
-    usePlans();
-  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+  const { plans, loading, error } = usePlans();
+  const [selectedInsuranceType, setSelectedInsuranceType] =
+    useState<InsuranceType | null>(null);
   const [periodicity, setPeriodicity] = useState<PaymentPeriodicity>("mensual");
+
+  const insuranceCards = useMemo(() => {
+    const grouped = plans.reduce(
+      (accumulator, plan) => {
+        accumulator[plan.type].push(plan);
+        return accumulator;
+      },
+      {
+        vida: [] as Plan[],
+        billetera: [] as Plan[],
+        mascota: [] as Plan[],
+      },
+    );
+
+    return (Object.keys(grouped) as InsuranceType[])
+      .map((type) => {
+        const sortedByPrice = [...grouped[type]].sort(
+          (left, right) => left.basePrice - right.basePrice,
+        );
+        const cheapestPlan = sortedByPrice[0] ?? null;
+
+        return {
+          type,
+          title: INSURANCE_LABELS[type],
+          description:
+            cheapestPlan?.description ??
+            "Protección diseñada para acompañarte cuando más lo necesitas.",
+          image: cheapestPlan?.image,
+          cheapestPlan,
+        };
+      })
+      .filter((item) => item.cheapestPlan !== null);
+  }, [plans]);
+
+  const selectedPlan = useMemo(() => {
+    if (!selectedInsuranceType) {
+      return null;
+    }
+
+    return (
+      insuranceCards.find((card) => card.type === selectedInsuranceType)
+        ?.cheapestPlan ?? null
+    );
+  }, [insuranceCards, selectedInsuranceType]);
 
   const summaryText = useMemo(() => {
     if (!selectedPlan) {
       return "Selecciona un plan para ver el resumen en tiempo real";
     }
 
-    return `${selectedPlan.name} (${selectedPlan.type}) - frecuencia ${periodicity}`;
+    return `${selectedPlan.name} - frecuencia ${periodicity}`;
   }, [periodicity, selectedPlan]);
 
   const onContinue = () => {
     if (!selectedPlan) return;
     router.push(
-      `/checkout?planId=${selectedPlan.id}&periodicity=${periodicity}`,
+      `/checkout?insuranceType=${selectedPlan.type}&planId=${selectedPlan.id}&periodicity=${periodicity}`,
     );
   };
 
@@ -35,36 +84,9 @@ export default function PlansPage() {
       <header>
         <h1 className="title-primary text-3xl">Planes de seguros</h1>
         <p className="mt-2 text-slate-600">
-          Compara coberturas y simula tu plan en tiempo real.
+          Elige el seguro que necesitas y empieza desde el plan más económico.
         </p>
       </header>
-
-      <section className="mt-6 rounded-xl border border-slate-200 bg-white p-4">
-        <p className="text-sm font-semibold text-slate-700">
-          Filtrar por tipo de seguro
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          {[
-            { value: "todos", label: "Todos" },
-            { value: "vida", label: "Vida" },
-            { value: "billetera", label: "Póliza de Billetera" },
-            { value: "mascota", label: "Mascota" },
-          ].map((item) => (
-            <button
-              key={item.value}
-              type="button"
-              onClick={() => setSelectedType(item.value as typeof selectedType)}
-              className={`rounded-md px-4 py-2 text-sm font-semibold ${
-                selectedType === item.value
-                  ? "bg-brand text-white"
-                  : "bg-slate-100 text-slate-700"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </section>
 
       <section className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
         <div className="grid gap-4 md:grid-cols-2">
@@ -72,13 +94,57 @@ export default function PlansPage() {
             <p className="text-sm text-slate-600">Cargando planes...</p>
           ) : null}
           {error ? <p className="text-sm text-red-600">{error}</p> : null}
-          {!loading && filteredPlans.length === 0 ? (
+          {!loading && insuranceCards.length === 0 ? (
             <p className="text-sm text-slate-600">
-              No hay planes para este filtro.
+              No hay planes disponibles en este momento.
             </p>
           ) : null}
-          {filteredPlans.map((plan) => (
-            <PlanCard key={plan.id} plan={plan} onSelect={setSelectedPlan} />
+          {insuranceCards.map((card) => (
+            <article
+              key={card.type}
+              className="card-surface p-5 shadow-sm transition hover:shadow-md"
+            >
+              {card.image ? (
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  className="mb-4 h-36 w-full rounded-lg object-cover"
+                />
+              ) : null}
+
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <h3 className="text-lg font-bold text-slate-900">
+                  {card.title}
+                </h3>
+                <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase text-brand">
+                  Esencial
+                </span>
+              </div>
+
+              <p className="text-sm text-slate-600">{card.description}</p>
+
+              <p className="mt-4 text-sm font-semibold text-slate-800">
+                Tu seguro desde
+              </p>
+              <p className="text-2xl font-extrabold text-brand">
+                {new Intl.NumberFormat("es-CO", {
+                  style: "currency",
+                  currency: "COP",
+                  maximumFractionDigits: 0,
+                }).format(card.cheapestPlan.basePrice)}
+                <span className="ml-1 text-sm font-semibold text-slate-600">
+                  / mes
+                </span>
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setSelectedInsuranceType(card.type)}
+                className="btn-primary mt-5 w-full"
+              >
+                Simular
+              </button>
+            </article>
           ))}
         </div>
 

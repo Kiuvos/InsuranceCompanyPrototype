@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-label="Poliza de billetera">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef6ff"/>
+      <stop offset="100%" stop-color="#d8ebff"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#g2)"/>
+  <rect x="250" y="155" width="460" height="250" rx="28" fill="#1f6fb2"/>
+  <rect x="250" y="205" width="460" height="200" rx="24" fill="#2d84cf"/>
+  <rect x="580" y="265" width="170" height="80" rx="14" fill="#103f68"/>
+  <circle cx="620" cy="305" r="10" fill="#ffd166"/>
+  <circle cx="655" cy="305" r="10" fill="#ffe39a"/>
+  <text x="48" y="82" fill="#163d5e" font-size="38" font-family="Arial, Helvetica, sans-serif" font-weight="700">Poliza de Billetera</text>
+</svg>
