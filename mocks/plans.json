@@ -1,0 +1,56 @@
+[
+  {
+    "id": "vida-esencial",
+    "name": "Vida Esencial",
+    "type": "vida",
+    "basePrice": 59000,
+    "coverages": [
+      "Fallecimiento por cualquier causa",
+      "Asistencia funeraria nacional",
+      "Invalidez total y permanente"
+    ],
+    "additionalBenefits": [
+      "Orientación médica telefónica 24/7",
+      "Descuento en red de farmacias"
+    ]
+  },
+  {
+    "id": "salud-plus",
+    "name": "Salud Plus",
+    "type": "salud",
+    "basePrice": 84000,
+    "coverages": [
+      "Consulta médica general virtual",
+      "Exámenes de laboratorio básicos",
+      "Urgencias y hospitalización"
+    ],
+    "additionalBenefits": ["Telemedicina ilimitada", "Chequeo preventivo anual"]
+  },
+  {
+    "id": "hogar-protegido",
+    "name": "Hogar Protegido",
+    "type": "hogar",
+    "basePrice": 47000,
+    "coverages": [
+      "Daños por incendio y explosión",
+      "Cobertura por robo de contenido",
+      "Responsabilidad civil familiar"
+    ],
+    "additionalBenefits": [
+      "Asistencia de cerrajería y plomería",
+      "Soporte técnico de electrodomésticos"
+    ]
+  },
+  {
+    "id": "vehiculo-seguro-total",
+    "name": "Vehículo Seguro Total",
+    "type": "vehiculo",
+    "basePrice": 119000,
+    "coverages": [
+      "Daños propios y terceros",
+      "Pérdida total por hurto",
+      "Asistencia vial 24/7"
+    ],
+    "additionalBenefits": ["Carro taller por 5 días", "Conductor elegido"]
+  }
+]
