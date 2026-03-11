@@ -25,8 +25,14 @@ export default function CheckoutPage() {
 
   const [personalData, setPersonalData] = useState<CheckoutPersonalData>({
     fullName: "",
-    documentId: "",
+    documentType: "",
+    documentNumber: "",
+    birthDate: "",
+    occupation: "",
+    maritalStatus: "",
+    address: "",
     email: "",
+    city: "",
     phone: "",
   });
 
@@ -68,9 +74,31 @@ export default function CheckoutPage() {
     setError(null);
 
     if (step === 1) {
-      const { fullName, documentId, email, phone } = personalData;
+      const {
+        fullName,
+        documentType,
+        documentNumber,
+        birthDate,
+        occupation,
+        maritalStatus,
+        address,
+        email,
+        city,
+        phone,
+      } = personalData;
       const emailValid = /.+@.+\..+/.test(email);
-      if (!fullName || !documentId || !email || !phone) {
+      if (
+        !fullName ||
+        !documentType ||
+        !documentNumber ||
+        !birthDate ||
+        !occupation ||
+        !maritalStatus ||
+        !address ||
+        !email ||
+        !city ||
+        !phone
+      ) {
         setError("Completa todos los datos personales antes de continuar");
         return false;
       }
@@ -177,6 +205,10 @@ export default function CheckoutPage() {
               <h2 className="text-xl font-bold text-slate-900">
                 Paso 1: Datos personales
               </h2>
+              <h4 className="text-sm text-slate-700">
+                Al continuar autoriza a ASEGURAT LTDA para hacer uso de sus
+                datos conforme a la ley Ley 1581 de 2012.
+              </h4>
               <div className="grid gap-4 md:grid-cols-2">
                 <input
                   value={personalData.fullName}
@@ -186,18 +218,84 @@ export default function CheckoutPage() {
                       fullName: event.target.value,
                     }))
                   }
-                  placeholder="Nombre completo"
+                  placeholder="Nombres y apellidos"
                   className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                 />
-                <input
-                  value={personalData.documentId}
+                <select
+                  value={personalData.documentType}
                   onChange={(event) =>
                     setPersonalData((prev) => ({
                       ...prev,
-                      documentId: event.target.value,
+                      documentType: event.target.value,
                     }))
                   }
-                  placeholder="Documento"
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                >
+                  <option value="">Tipo de documento</option>
+                  <option value="cc">Cédula de ciudadanía</option>
+                  <option value="ce">Cédula de extranjería</option>
+                  <option value="ti">Tarjeta de identidad</option>
+                  <option value="pasaporte">Pasaporte</option>
+                </select>
+                <input
+                  value={personalData.documentNumber}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      documentNumber: event.target.value,
+                    }))
+                  }
+                  placeholder="Número de documento"
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                />
+                <input
+                  value={personalData.birthDate}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      birthDate: event.target.value,
+                    }))
+                  }
+                  type="date"
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                />
+                <input
+                  value={personalData.occupation}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      occupation: event.target.value,
+                    }))
+                  }
+                  placeholder="Ocupación"
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                />
+                <select
+                  value={personalData.maritalStatus}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      maritalStatus: event.target.value,
+                    }))
+                  }
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                >
+                  <option value="">Estado civil</option>
+                  <option value="soltero">Soltero</option>
+                  <option value="casado">Casado</option>
+                  <option value="union_libre">Unión libre</option>
+                  <option value="divorciado">Divorciado</option>
+                  <option value="viudo">Viudo</option>
+                </select>
+                <input
+                  value={personalData.address}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      address: event.target.value,
+                    }))
+                  }
+                  placeholder="Dirección de domicilio"
                   className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                 />
                 <input
@@ -213,6 +311,17 @@ export default function CheckoutPage() {
                   className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                 />
                 <input
+                  value={personalData.city}
+                  onChange={(event) =>
+                    setPersonalData((prev) => ({
+                      ...prev,
+                      city: event.target.value,
+                    }))
+                  }
+                  placeholder="Ciudad"
+                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                />
+                <input
                   value={personalData.phone}
                   onChange={(event) =>
                     setPersonalData((prev) => ({
@@ -220,7 +329,7 @@ export default function CheckoutPage() {
                       phone: event.target.value,
                     }))
                   }
-                  placeholder="Teléfono"
+                  placeholder="Celular"
                   className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                 />
               </div>

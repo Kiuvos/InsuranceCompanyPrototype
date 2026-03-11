@@ -1,56 +1,119 @@
 [
   {
-    "id": "vida-esencial",
-    "name": "Vida Esencial",
+    "id": "vida-basico",
+    "name": "Seguro de Vida - Basico",
     "type": "vida",
-    "basePrice": 59000,
+    "basePrice": 39000,
     "coverages": [
-      "Fallecimiento por cualquier causa",
-      "Asistencia funeraria nacional",
-      "Invalidez total y permanente"
+      "Cobertura por fallecimiento",
+      "Asistencia funeraria",
+      "Orientacion telefonica"
+    ],
+    "additionalBenefits": ["Red de aliados en salud", "Descuento en farmacias"]
+  },
+  {
+    "id": "vida-estandar",
+    "name": "Seguro de Vida - Estandar",
+    "type": "vida",
+    "basePrice": 69000,
+    "coverages": [
+      "Cobertura por fallecimiento ampliada",
+      "Invalidez total y permanente",
+      "Asistencia funeraria premium"
+    ],
+    "additionalBenefits": ["Consulta medica virtual", "Segunda opinion medica"]
+  },
+  {
+    "id": "vida-premium",
+    "name": "Seguro de Vida - Premium",
+    "type": "vida",
+    "basePrice": 109000,
+    "coverages": [
+      "Cobertura integral por fallecimiento",
+      "Invalidez y enfermedades graves",
+      "Asistencia internacional"
+    ],
+    "additionalBenefits": ["Acompañamiento legal", "Chequeo preventivo anual"]
+  },
+  {
+    "id": "billetera-basico",
+    "name": "Poliza de Billetera - Basico",
+    "type": "billetera",
+    "basePrice": 15000,
+    "coverages": [
+      "Robo de documentos",
+      "Reposicion de cedula y licencia",
+      "Bloqueo de tarjetas"
+    ],
+    "additionalBenefits": ["Asistencia telefonica 24/7", "Orientacion juridica"]
+  },
+  {
+    "id": "billetera-estandar",
+    "name": "Poliza de Billetera - Estandar",
+    "type": "billetera",
+    "basePrice": 24000,
+    "coverages": [
+      "Robo de billetera y documentos",
+      "Reembolso de tramites",
+      "Proteccion por uso no autorizado"
     ],
     "additionalBenefits": [
-      "Orientación médica telefónica 24/7",
-      "Descuento en red de farmacias"
+      "Asistencia en viaje",
+      "Servicio de mensajeria de emergencia"
     ]
   },
   {
-    "id": "salud-plus",
-    "name": "Salud Plus",
-    "type": "salud",
-    "basePrice": 84000,
+    "id": "billetera-premium",
+    "name": "Poliza de Billetera - Premium",
+    "type": "billetera",
+    "basePrice": 36000,
     "coverages": [
-      "Consulta médica general virtual",
-      "Exámenes de laboratorio básicos",
-      "Urgencias y hospitalización"
+      "Robo con cobertura ampliada",
+      "Fraude en medios de pago",
+      "Reposicion express de documentos"
     ],
-    "additionalBenefits": ["Telemedicina ilimitada", "Chequeo preventivo anual"]
+    "additionalBenefits": [
+      "Concierge de asistencia",
+      "Gestor personal de siniestros"
+    ]
   },
   {
-    "id": "hogar-protegido",
-    "name": "Hogar Protegido",
-    "type": "hogar",
+    "id": "mascota-basico",
+    "name": "Seguro de Mascota - Basico",
+    "type": "mascota",
+    "basePrice": 29000,
+    "coverages": [
+      "Consulta veterinaria general",
+      "Vacunacion basica",
+      "Asistencia telefonica veterinaria"
+    ],
+    "additionalBenefits": ["Descuentos en pet shop", "Orientacion nutricional"]
+  },
+  {
+    "id": "mascota-estandar",
+    "name": "Seguro de Mascota - Estandar",
+    "type": "mascota",
     "basePrice": 47000,
     "coverages": [
-      "Daños por incendio y explosión",
-      "Cobertura por robo de contenido",
-      "Responsabilidad civil familiar"
+      "Urgencias veterinarias",
+      "Examenes de laboratorio",
+      "Medicamentos basicos"
     ],
     "additionalBenefits": [
-      "Asistencia de cerrajería y plomería",
-      "Soporte técnico de electrodomésticos"
+      "Baño y peluqueria con descuento",
+      "Asistencia para extravio"
     ]
   },
   {
-    "id": "vehiculo-seguro-total",
-    "name": "Vehículo Seguro Total",
-    "type": "vehiculo",
-    "basePrice": 119000,
+    "id": "mascota-premium",
+    "name": "Seguro de Mascota - Premium",
+    "type": "mascota",
+    "basePrice": 69000,
     "coverages": [
-      "Daños propios y terceros",
-      "Pérdida total por hurto",
-      "Asistencia vial 24/7"
+      "Hospitalizacion y cirugia",
+      "Urgencias 24/7",
+      "Examenes especializados"
     ],
-    "additionalBenefits": ["Carro taller por 5 días", "Conductor elegido"]
+    "additionalBenefits": ["Cobertura en viaje", "Asistencia de adiestramiento"]
   }
 ]

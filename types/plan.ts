@@ -1,4 +1,4 @@
-export type InsuranceType = "vida" | "salud" | "hogar" | "vehiculo";
+export type InsuranceType = "vida" | "billetera" | "mascota";
 
 export type PaymentPeriodicity = "mensual" | "anual";
 
@@ -13,8 +13,14 @@ export interface Plan {
 
 export interface CheckoutPersonalData {
   fullName: string;
-  documentId: string;
+  documentType: string;
+  documentNumber: string;
+  birthDate: string;
+  occupation: string;
+  maritalStatus: string;
+  address: string;
   email: string;
+  city: string;
   phone: string;
 }
 

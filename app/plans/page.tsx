@@ -47,9 +47,8 @@ export default function PlansPage() {
           {[
             { value: "todos", label: "Todos" },
             { value: "vida", label: "Vida" },
-            { value: "salud", label: "Salud" },
-            { value: "hogar", label: "Hogar" },
-            { value: "vehiculo", label: "Vehículo" },
+            { value: "billetera", label: "Póliza de Billetera" },
+            { value: "mascota", label: "Mascota" },
           ].map((item) => (
             <button
               key={item.value}

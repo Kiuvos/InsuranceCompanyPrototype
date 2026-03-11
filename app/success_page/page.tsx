@@ -23,7 +23,8 @@ export default async function ConfirmacionPage({
           Compra exitosa
         </p>
         <h1 className="title-primary mt-2 text-3xl">
-          Tu seguro quedó activo de forma provisional
+          Tu seguro quedó activo de forma provisional, Gracias por permitirnos
+          proteger su futuro y el de su familia
         </h1>
 
         <div className="mt-5 space-y-2 rounded-lg bg-white p-4 text-sm text-slate-700">
