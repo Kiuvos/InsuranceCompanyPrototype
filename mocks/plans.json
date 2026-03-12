@@ -1,143 +1,568 @@
 [
   {
-    "id": "vida-basico",
-    "name": "Seguro de Vida - Basico",
+    "id": "vida-20m",
+    "name": "Seguro de Vida $20.000.000",
     "type": "vida",
-    "description": "Protege la tranquilidad de tu familia con cobertura esencial y respaldo oportuno.",
+    "description": "Protege a tu familia con una suma asegurada de $20.000.000 ante fallecimiento, incapacidad total o enfermedad grave.",
     "image": "/insurance/vida.svg",
-    "basePrice": 39000,
+    "basePrice": 13600,
     "coverages": [
-      "Cobertura por fallecimiento",
-      "Asistencia funeraria",
-      "Orientacion telefonica"
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
     ],
-    "additionalBenefits": ["Red de aliados en salud", "Descuento en farmacias"]
-  },
-  {
-    "id": "vida-estandar",
-    "name": "Seguro de Vida - Estandar",
-    "extraData": [
-      { "key": "petName", "label": "Nombre", "type": "text" },
-      { "key": "petBreed", "label": "Raza", "type": "text" },
-      { "key": "petAge", "label": "Edad", "type": "number" },
-      { "key": "petColor", "label": "Color", "type": "text" },
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
       {
-        "key": "petVaccinated",
-        "label": "Vacunas",
-        "type": "select",
-        "options": [
-          { "label": "Sí", "value": "si" },
-          { "label": "No", "value": "no" }
-        ]
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
       }
     ],
-    "type": "vida",
-    "description": "Mayor respaldo para tu familia con coberturas ampliadas ante eventos inesperados.",
-    "image": "/insurance/vida.svg",
-    "basePrice": 69000,
-    "coverages": [
-      "Cobertura por fallecimiento ampliada",
-      "Invalidez total y permanente",
-      "Asistencia funeraria premium"
-    ],
-    "additionalBenefits": ["Consulta medica virtual", "Segunda opinion medica"]
-  },
-  {
-    "id": "vida-premium",
-    "name": "Seguro de Vida - Premium",
-    "extraData": [
-      { "key": "petName", "label": "Nombre", "type": "text" },
-      { "key": "petBreed", "label": "Raza", "type": "text" },
-      { "key": "petAge", "label": "Edad", "type": "number" },
-      { "key": "petColor", "label": "Color", "type": "text" },
+    "exclusions": [
       {
-        "key": "petVaccinated",
-        "label": "Vacunas",
-        "type": "select",
-        "options": [
-          { "label": "Sí", "value": "si" },
-          { "label": "No", "value": "no" }
-        ]
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
       }
     ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR \n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
+  },
+  {
+    "id": "vida-50m",
+    "name": "Seguro de Vida $50.000.000",
     "type": "vida",
-    "description": "Protección integral para tu proyecto de vida, con beneficios diferenciados.",
+    "description": "Respaldo sólido para tu familia con una suma asegurada de $50.000.000 ante fallecimiento, incapacidad total o enfermedad grave.",
     "image": "/insurance/vida.svg",
-    "basePrice": 109000,
+    "basePrice": 34000,
     "coverages": [
-      "Cobertura integral por fallecimiento",
-      "Invalidez y enfermedades graves",
-      "Asistencia internacional"
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
     ],
-    "additionalBenefits": ["Acompañamiento legal", "Chequeo preventivo anual"]
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
+      {
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
+      }
+    ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR\n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
+  },
+  {
+    "id": "vida-80m",
+    "name": "Seguro de Vida $80.000.000",
+    "type": "vida",
+    "description": "Cobertura amplia de $80.000.000 para proteger el bienestar de tu familia ante cualquier imprevisto.",
+    "image": "/insurance/vida.svg",
+    "basePrice": 54400,
+    "coverages": [
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
+    ],
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
+      {
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
+      }
+    ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR \n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
+  },
+  {
+    "id": "vida-100m",
+    "name": "Seguro de Vida $100.000.000",
+    "type": "vida",
+    "description": "Protección de alto valor con $100.000.000 en suma asegurada frente a fallecimiento, incapacidad o enfermedad grave.",
+    "image": "/insurance/vida.svg",
+    "basePrice": 68000,
+    "coverages": [
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
+    ],
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
+      {
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
+      }
+    ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR\n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
+  },
+  {
+    "id": "vida-150m",
+    "name": "Seguro de Vida $150.000.000",
+    "type": "vida",
+    "description": "Cobertura superior de $150.000.000 para garantizar la estabilidad de tu familia ante cualquier eventualidad.",
+    "image": "/insurance/vida.svg",
+    "basePrice": 102000,
+    "coverages": [
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
+    ],
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
+      {
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
+      }
+    ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR\n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
+  },
+  {
+    "id": "vida-200m",
+    "name": "Seguro de Vida $200.000.000",
+    "type": "vida",
+    "description": "Máxima protección con $200.000.000 en suma asegurada para el futuro de quienes más quieres.",
+    "image": "/insurance/vida.svg",
+    "basePrice": 132000,
+    "coverages": [
+      "Muerte por cualquier causa",
+      "Incapacidad total y permanente",
+      "Enfermedades graves"
+    ],
+    "officialLink": "https://www.segurosbolivar.com/portafolio-seguros-de-vida-familia",
+    "fullDescription": "El Seguro de Vida es una póliza diseñada para brindar respaldo económico a tu familia o beneficiarios en caso de situaciones inesperadas como fallecimiento, enfermedad grave o incapacidad. Su objetivo principal es proteger la estabilidad financiera de quienes dependen de ti.",
+    "coverageDetails": [
+      {
+        "title": "Fallecimiento",
+        "description": "En caso de fallecimiento del asegurado, los beneficiarios reciben un capital asegurado que les ayuda a cubrir gastos y mantener su estabilidad económica."
+      },
+      {
+        "title": "Enfermedades graves",
+        "description": "Si el asegurado es diagnosticado con una enfermedad grave (como cáncer o insuficiencia renal), puede recibir un apoyo económico para afrontar tratamientos y gastos asociados."
+      },
+      {
+        "title": "Incapacidad total y permanente",
+        "description": "Si una enfermedad o accidente impide que el asegurado pueda realizar actividades básicas o trabajar, el seguro otorga un respaldo económico para cubrir sus necesidades."
+      },
+      {
+        "title": "Invalidez",
+        "description": "En caso de invalidez causada por enfermedad o accidente, la póliza puede ofrecer indemnización económica para compensar la pérdida de ingresos."
+      },
+      {
+        "title": "Accidentes",
+        "description": "Si ocurre un accidente que genere pérdida funcional o física de una parte del cuerpo, el seguro puede pagar un porcentaje del valor asegurado según la gravedad del caso."
+      },
+      {
+        "title": "Protección financiera para la familia",
+        "description": "El seguro garantiza un respaldo económico para los beneficiarios, permitiéndoles mantener su calidad de vida ante la ausencia del asegurado."
+      }
+    ],
+    "exclusions": [
+      {
+        "title": "Suicidio durante el periodo inicial",
+        "description": "El seguro generalmente no cubre suicidio durante el primer año o los primeros meses de la póliza."
+      },
+      {
+        "title": "Accidentes bajo efectos de alcohol o drogas",
+        "description": "No se cubren eventos ocurridos cuando el asegurado está bajo la influencia de sustancias psicoactivas."
+      },
+      {
+        "title": "Actividades ilegales",
+        "description": "Si el accidente ocurre cometiendo un delito, la póliza no aplica."
+      },
+      {
+        "title": "Deportes o actividades de alto riesgo",
+        "description": "En algunos casos no cubre deportes extremos o actividades realizadas de forma profesional."
+      },
+      {
+        "title": "Enfermedades o condiciones preexistentes",
+        "description": "Las enfermedades diagnosticadas antes de contratar la póliza pueden no estar cubiertas."
+      },
+      {
+        "title": "Guerra, terrorismo o disturbios",
+        "description": "Las incapacidades o muertes relacionadas con conflictos armados o actos terroristas suelen estar excluidas."
+      }
+    ],
+    "declaration": "ES IMPORTANTE LEER ESTA DECLARACIÓN DE ASEGURABILIDAD ANTES DE FIRMAR ESTE DOCUMENTO PARA EFECTOS DE LA CONTRATACIÓN DE LA PRESENTE PÓLIZA, HAGO CONSTAR QUÉ:\n\n1) MI ESTADO ACTUAL DE SALUD ES NORMAL, NO PADEZCO NI HE PADECIDO ENFERMEDADES CONGÉNITAS, CARDIOVASCULARES, NEUROLÓGICAS, NI ENFERMEDADES COMO HIPERTENSIÓN ARTERIAL Y CÁNCER, NO ME HAN DIAGNOSTICADO LA PRESENCIA DE ANTICUERPOS CONTRA EL VIRUS V.I.H, PRODUCTO DEL SIDA, DIABETES, EPILEPSIA, ASMA, TROMBOSIS, ANEMIA, LEUCEMIA, DERRAME CEREBRAL, EFISEMA PULMONAR, ARTRITIS REUMATOIDEA, INSUFICIENCIA RENAL TUMORES, TRANSTORNOS INMUNOLÓGICOS, NI DEFECTOS O LIMITACIONES FÍSICAS O MENTALES QUE INCIDAN EN MI ESTADO DE SALUD. NO TENGO INTERVENCIONES QUIRÚRGICAS PENDIENTES, NO CONSUMO BEBIDAS ALCOHÓLICAS EN EXCESO, NO CONSUMO SUSTANCIAS PSICOACTIVAS NI HE RECIBIDO TRATAMIENTO PROFESIONAL POR EL ABUSO DE ALCOHOL O DROGAS. EN CASO DE HABER PADECIDO ALGUNA DE LAS ENFERMEDADES, INTERVENCIONES O CONDICIONES ANTERIORES, FAVOR ESPECIFICAR\n\n2) NO HE SIDO APLAZADO O DECLINADO POR SEGUROS DE VIDA DEL ESTADO S.A. O POR OTRAS COMPAÑÍAS AL PRESENTAR UNA SOLICITUD DE SEGURO DE VIDA, SALUD O ACCIDENTES PERSONALES.\n\n3) LAS ACTIVIDADES A LAS QUE ME DEDICO SON LICITAS Y LAS EJERZO DENTRO DE LOS MARCOS LEGALES.\n\n4) ESTOY DESARROLLANDO EN FORMA NORMAL MI ACTIVIDAD Y NO HE RECIBIDO AMENAZAS CONTRA MI VIDA E INTEGRIDAD.\n\n5) NO PRACTICO DEPORTES QUE AFECTEN MI INTEGRIDAD, COMO LOS CONSIDERADOS DE ALTO RIESGO.\n\n6) LAS DECLARACIONES CONTENIDAS EN ESTE DOCUMENTO SON EXACTAS, COMPLETAS, VERÍDICAS Y POR LO TANTO CUALQUIER RETICENCIA ERROR U OMISIÓN EN LA INFORMACIÓN SUMINISTRADA TENDRÁ LAS CONSECUENCIAS ESTIPULADAS EN LOS ARTICULOS, 1058, 1158 Y 1161 DEL CÓDIGO DE COMERCIO. EN CASO QUE REQUIERA REALIZAR ALGUNA ACLARACIÓN DE LAS AFIRMACIONES 2 A LA 6, FAVOR INDICAR:\n\nAUTORIZO A SEGUROS BOLÍVAR S.A., PARA CONSULTAR BASES DE DATOS DE SEGUROS DE PERSONAS Y DEMÁS BASES DE DATOS QUE CONTENGAN INFORMACIÓN SOBRE MIS ANTECEDENTES COMERCIALES Y FINANCIEROS, IGUALMENTE A REPORTARME A ESTAS BASES DE DATOS EN CASO NECESARIO. EN CUMPLIMIENTO DE LAS PREVISIONES DE LA LEY 23 DE 1981, DE LA RESOLUCIÓN 1995 DE 1999 DEL MINISTERIO DE SALUD Y DEMÁS NORMATIVIDAD SOBRE LA MATERIA, AUTORIZO EXPRESAMENTE A SEGUROS DE VIDA DEL ESTADO S.A. PARA SOLICITAR, CONOCER Y VERIFICAR LA HISTORIA CLÍNICA Y/O LA CARTA DENTAL, O LO CONTENIDO EN CUALQUIER OTRO DOCUMENTO, AÚN DESPUÉS DE MI FALLECIMIENTO. LA PRESENTE SOLICITUD NO CONSTITUYE ACEPTACIÓN DEL RIESGO POR PARTE DE SEGUROS BOLÍVAR S.A., HASTA TANTO LA COMPAÑÍA MANIFIESTE DE MANERA EXPRESA Y DOCUMENTO ESCRITO."
   },
   {
     "id": "billetera-basico",
     "name": "Poliza de Billetera - Basico",
-    "extraData": [
-      { "key": "petName", "label": "Nombre", "type": "text" },
-      { "key": "petBreed", "label": "Raza", "type": "text" },
-      { "key": "petAge", "label": "Edad", "type": "number" },
-      { "key": "petColor", "label": "Color", "type": "text" },
-      {
-        "key": "petVaccinated",
-        "label": "Vacunas",
-        "type": "select",
-        "options": [
-          { "label": "Sí", "value": "si" },
-          { "label": "No", "value": "no" }
-        ]
-      }
-    ],
     "type": "billetera",
-    "description": "Cubre lo esencial de tus documentos y medios de pago en casos de robo o pérdida.",
+    "description": "Protege tu billetera, documentos y medios de pago frente a robo, fraude y gastos derivados del hurto.",
     "image": "/insurance/billetera.svg",
-    "basePrice": 15000,
+    "basePrice": 13500,
+    "annualPrice": 150000,
     "coverages": [
-      "Robo de documentos",
-      "Reposicion de cedula y licencia",
-      "Bloqueo de tarjetas"
+      "Robo de la billetera, bolso o cartera",
+      "Fraude con tarjetas y protección en cajeros",
+      "Asistencia por documentos, llaves y transporte"
     ],
-    "additionalBenefits": ["Asistencia telefonica 24/7", "Orientacion juridica"]
+    "additionalBenefits": [
+      "Gastos médicos por lesiones en atraco",
+      "Bloqueo y orientación para recuperación de documentos"
+    ],
+    "fullDescription": "La Póliza de Billetera está diseñada para proteger tus objetos personales esenciales y darte respaldo inmediato ante robo o pérdida. Su objetivo es ayudarte a recuperar el control de tus medios de pago, documentos y pertenencias más importantes sin asumir solo todos los costos del incidente.",
+    "coverageDetails": [
+      {
+        "title": "Robo de la billetera, bolso o cartera",
+        "description": "Cubre la pérdida de la billetera, bolso o cartera y su contenido principal cuando ocurre un hurto o atraco."
+      },
+      {
+        "title": "Tarjetas y documentos",
+        "description": "Incluye protección para tarjetas de crédito y débito, cédula, pasaporte, licencia de conducción y otros documentos de identificación."
+      },
+      {
+        "title": "Llaves y artículos personales",
+        "description": "Cubre llaves del hogar y del vehículo, además de artículos personales como gafas, maquillaje y otros elementos de uso cotidiano."
+      },
+      {
+        "title": "Dinero en efectivo",
+        "description": "Incluye cobertura para dinero en efectivo dentro del límite definido por la póliza."
+      },
+      {
+        "title": "Protección en cajeros automáticos",
+        "description": "Cubre el dinero retirado cuando el asegurado es obligado bajo amenaza o fuerza después de usar un cajero automático."
+      },
+      {
+        "title": "Fraude con tarjetas",
+        "description": "Protege contra el uso indebido o fraudulento de tus tarjetas después del robo o pérdida."
+      },
+      {
+        "title": "Gastos médicos",
+        "description": "Cubre gastos médicos si sufres lesiones durante un atraco o evento amparado."
+      }
+    ]
   },
   {
     "id": "billetera-estandar",
     "name": "Poliza de Billetera - Estandar",
     "type": "billetera",
-    "description": "Suma protección frente a fraude y trámites derivados de incidentes con tu billetera.",
+    "description": "Suma protección frente a fraude, robo y reposición de elementos esenciales de tu billetera.",
     "image": "/insurance/billetera.svg",
     "basePrice": 24000,
     "coverages": [
       "Robo de billetera y documentos",
-      "Reembolso de tramites",
-      "Proteccion por uso no autorizado"
+      "Protección por uso no autorizado de tarjetas",
+      "Asistencia por llaves, cerraduras y retorno a casa"
     ],
     "additionalBenefits": [
-      "Asistencia en viaje",
-      "Servicio de mensajeria de emergencia"
+      "Reemplazo de llaves y cerraduras",
+      "Transporte de regreso a casa después de un robo"
+    ],
+    "fullDescription": "La Póliza de Billetera protege tus pertenencias esenciales y te acompaña con asistencia práctica cuando sufres un robo o pérdida. Además del respaldo económico, incluye ayuda operativa para reducir el impacto del evento en tu día a día.",
+    "coverageDetails": [
+      {
+        "title": "Robo de la billetera, bolso o cartera",
+        "description": "Ampara el hurto de la billetera y de su contenido principal."
+      },
+      {
+        "title": "Documentos y medios de pago",
+        "description": "Protege tarjetas de crédito y débito, documentos de identificación y otros elementos personales relevantes."
+      },
+      {
+        "title": "Protección en cajeros automáticos",
+        "description": "Cubre retiros realizados bajo amenaza o fuerza en cajeros automáticos."
+      },
+      {
+        "title": "Fraude con tarjetas",
+        "description": "Respalda al asegurado frente a consumos o movimientos no autorizados derivados del robo."
+      },
+      {
+        "title": "Gastos médicos",
+        "description": "Incluye cobertura por lesiones sufridas durante el atraco."
+      },
+      {
+        "title": "Servicios de asistencia",
+        "description": "Ofrece ayuda para bloquear documentos, reemplazar llaves y cerraduras, y coordinar transporte de regreso a casa."
+      }
     ]
   },
   {
     "id": "billetera-premium",
     "name": "Poliza de Billetera - Premium",
     "type": "billetera",
-    "description": "Máxima cobertura para documentos, pagos y defensa ante afectaciones a terceros.",
+    "description": "Máxima protección para tus documentos, efectivo, tarjetas y asistencias derivadas de un robo.",
     "image": "/insurance/billetera.svg",
     "basePrice": 36000,
     "coverages": [
-      "Robo con cobertura ampliada",
-      "Fraude en medios de pago",
-      "Reposicion express de documentos"
+      "Robo con cobertura ampliada de contenido",
+      "Fraude en medios de pago y retiros forzados",
+      "Asistencia integral por documentos, llaves y movilidad"
     ],
     "additionalBenefits": [
-      "Concierge de asistencia",
-      "Gestor personal de siniestros"
+      "Reembolso para artículos personales esenciales",
+      "Acompañamiento en trámites posteriores al siniestro"
+    ],
+    "fullDescription": "La Póliza de Billetera en su nivel premium ofrece un respaldo más amplio para tus objetos personales, documentos y medios de pago, con cobertura económica y asistencia inmediata para que recuperes tu seguridad y movilidad después del incidente.",
+    "coverageDetails": [
+      {
+        "title": "Robo de billetera y contenido principal",
+        "description": "Ampara la pérdida de la billetera, bolso o cartera junto con sus elementos esenciales."
+      },
+      {
+        "title": "Contenido protegido",
+        "description": "Incluye tarjetas, documentos de identificación, llaves, dinero en efectivo dentro del límite y artículos personales como gafas o maquillaje."
+      },
+      {
+        "title": "Protección en cajeros automáticos",
+        "description": "Cubre el dinero retirado bajo amenazas o fuerza en un cajero automático."
+      },
+      {
+        "title": "Fraude con tarjetas",
+        "description": "Ofrece protección frente al uso fraudulento o indebido de tus tarjetas."
+      },
+      {
+        "title": "Gastos médicos",
+        "description": "Respalda los gastos médicos originados por lesiones en un atraco."
+      },
+      {
+        "title": "Servicios de asistencia",
+        "description": "Incluye asesoría para bloquear documentos, reemplazo de llaves y cerraduras, y transporte de regreso a casa tras el robo."
+      }
     ]
   },
   {
     "id": "mascota-basico",
     "name": "Seguro de Mascota - Basico",
     "type": "mascota",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "description": "Cuida a tu mascota con coberturas esenciales de salud y respaldo civil básico.",
     "image": "/insurance/mascota.webp",
     "basePrice": 18000,
@@ -162,6 +587,21 @@
     "id": "mascota-estandar",
     "name": "Seguro de Mascota - Estandar",
     "type": "mascota",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "description": "Más tranquilidad para tu mascota con coberturas ampliadas y mejor protección civil.",
     "image": "/insurance/mascota.webp",
     "basePrice": 25200,
@@ -186,6 +626,21 @@
     "id": "mascota-premium",
     "name": "Seguro de Mascota - Premium",
     "type": "mascota",
+    "extraData": [
+      { "key": "petName", "label": "Nombre", "type": "text" },
+      { "key": "petBreed", "label": "Raza", "type": "text" },
+      { "key": "petAge", "label": "Edad", "type": "number" },
+      { "key": "petColor", "label": "Color", "type": "text" },
+      {
+        "key": "petVaccinated",
+        "label": "Vacunas",
+        "type": "select",
+        "options": [
+          { "label": "Sí", "value": "si" },
+          { "label": "No", "value": "no" }
+        ]
+      }
+    ],
     "description": "Cobertura integral para emergencias, bienestar y responsabilidad civil de alto nivel.",
     "image": "/insurance/mascota.webp",
     "basePrice": 32400,

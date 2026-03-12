@@ -16,5 +16,11 @@ export default async function ConfirmacionPage({
   const receipt = resolvedSearchParams?.receipt ?? "RC-000000";
   const emailSent = resolvedSearchParams?.emailSent === "true";
 
-  return <SuccessPageDetails policy={policy} receipt={receipt} emailSent={emailSent} />;
+  return (
+    <SuccessPageDetails
+      policy={policy}
+      receipt={receipt}
+      emailSent={emailSent}
+    />
+  );
 }

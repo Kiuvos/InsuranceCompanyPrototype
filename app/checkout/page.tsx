@@ -51,10 +51,11 @@ export default function CheckoutPage() {
     cardCvv: "",
   });
   const [pseBank, setPseBank] = useState("");
-  const [extraDataValues, setExtraDataValues] = useState<Record<string, string>>(
-    {},
-  );
+  const [extraDataValues, setExtraDataValues] = useState<
+    Record<string, string>
+  >({});
   const [error, setError] = useState<string | null>(null);
+  const [showPlanModal, setShowPlanModal] = useState(false);
 
   useEffect(() => {
     async function loadPlans() {
@@ -277,7 +278,10 @@ export default function CheckoutPage() {
 
               {selectedInsuranceType ? (
                 <p className="text-sm text-slate-600">
-                  Tipo seleccionado: <strong>{selectedInsuranceType}</strong>
+                  Tipo seleccionado:
+                  <strong>{" " + selectedInsuranceType + " "}</strong>
+                  por favor lea con atención las condiciones del plan antes de
+                  continuar con la compra.
                 </p>
               ) : null}
 
@@ -322,6 +326,115 @@ export default function CheckoutPage() {
                         </ul>
                       </>
                     ) : null}
+
+                    {selectedPlan.officialLink ? (
+                      <a
+                        href={selectedPlan.officialLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 block text-sm font-medium text-brand underline hover:text-brand/80"
+                      >
+                        Más información en el sitio oficial de SEGUROS BOLÍVAR →
+                      </a>
+                    ) : null}
+
+                    {selectedPlan.fullDescription ? (
+                      <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+                        {selectedPlan.fullDescription}
+                      </p>
+                    ) : null}
+
+                    {selectedPlan.coverageDetails?.length ? (
+                      <div className="mt-4">
+                        <p className="font-semibold text-slate-900">
+                          ¿Qué cubre?
+                        </p>
+                        <ol className="mt-2 space-y-2">
+                          {selectedPlan.coverageDetails.map((item, idx) => (
+                            <li
+                              key={item.title}
+                              className="text-sm text-slate-600"
+                            >
+                              <span className="font-semibold text-slate-800">
+                                {idx + 1}. {item.title}:
+                              </span>{" "}
+                              {item.description}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    ) : null}
+
+                    {selectedPlan.exclusions?.length ? (
+                      <div className="mt-4">
+                        <p className="font-semibold text-slate-900">
+                          ¿Qué NO cubre?
+                        </p>
+                        <ol className="mt-2 space-y-2">
+                          {selectedPlan.exclusions.map((item, idx) => (
+                            <li
+                              key={item.title}
+                              className="text-sm text-slate-600"
+                            >
+                              <span className="font-semibold text-slate-800">
+                                {idx + 1}. {item.title}:
+                              </span>{" "}
+                              {item.description}
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    ) : null}
+
+                    {selectedPlan.declaration ? (
+                      <div className="mt-4">
+                        <button
+                          type="button"
+                          onClick={() => setShowPlanModal(true)}
+                          className="w-full rounded-md border border-brand bg-white px-4 py-2 text-sm font-semibold text-brand hover:bg-brand/5 transition"
+                        >
+                          Ver Declaración de Asegurabilidad
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
+
+              {showPlanModal && selectedPlan ? (
+                <div
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+                  onClick={() => setShowPlanModal(false)}
+                >
+                  <div
+                    className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-xl bg-white p-6 shadow-xl"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setShowPlanModal(false)}
+                      className="absolute right-4 top-4 text-slate-400 hover:text-slate-700 text-xl font-bold"
+                    >
+                      ✕
+                    </button>
+
+                    <h3 className="text-base font-bold uppercase tracking-wide text-slate-900 pr-8">
+                      Declaración de Asegurabilidad
+                    </h3>
+
+                    {selectedPlan.declaration ? (
+                      <div className="mt-3 rounded-lg bg-slate-50 p-4 text-xs leading-relaxed text-slate-600 whitespace-pre-line">
+                        {selectedPlan.declaration}
+                      </div>
+                    ) : null}
+
+                    <button
+                      type="button"
+                      onClick={() => setShowPlanModal(false)}
+                      className="btn-primary mt-6 w-full"
+                    >
+                      Cerrar
+                    </button>
                   </div>
                 </div>
               ) : null}

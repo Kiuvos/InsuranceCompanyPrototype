@@ -10,8 +10,14 @@ export interface Plan {
   image?: string;
   extraData?: PlanExtraDataField[];
   basePrice: number;
+  annualPrice?: number;
   coverages: string[];
   additionalBenefits?: string[];
+  officialLink?: string;
+  declaration?: string;
+  fullDescription?: string;
+  coverageDetails?: Array<{ title: string; description: string }>;
+  exclusions?: Array<{ title: string; description: string }>;
 }
 
 export interface PlanExtraDataField {

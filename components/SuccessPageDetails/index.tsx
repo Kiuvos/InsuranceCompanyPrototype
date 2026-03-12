@@ -37,7 +37,9 @@ export function SuccessPageDetails({
   const [extraData, setExtraData] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    const rawLastPurchase = window.localStorage.getItem("asegurat_last_purchase");
+    const rawLastPurchase = window.localStorage.getItem(
+      "asegurat_last_purchase",
+    );
     if (!rawLastPurchase) {
       return;
     }
@@ -82,7 +84,9 @@ export function SuccessPageDetails({
 
         {extraDataEntries.length ? (
           <div className="mt-4 rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
-            <h2 className="text-base font-bold text-slate-900">Datos de mascota</h2>
+            <h2 className="text-base font-bold text-slate-900">
+              Datos de mascota
+            </h2>
             <ul className="mt-2 space-y-1">
               {extraDataEntries.map(([key, value]) => (
                 <li key={key}>

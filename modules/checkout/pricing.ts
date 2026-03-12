@@ -9,9 +9,10 @@ export interface PricingBreakdown {
 export function getPlanPriceByPeriodicity(
   basePrice: number,
   periodicity: PaymentPeriodicity,
+  annualPrice?: number,
 ): number {
   if (periodicity === "anual") {
-    return basePrice * 12;
+    return annualPrice ?? basePrice * 12;
   }
 
   return basePrice;
@@ -21,7 +22,11 @@ export function getPricingBreakdown(
   plan: Plan,
   periodicity: PaymentPeriodicity,
 ): PricingBreakdown {
-  const subtotal = getPlanPriceByPeriodicity(plan.basePrice, periodicity);
+  const subtotal = getPlanPriceByPeriodicity(
+    plan.basePrice,
+    periodicity,
+    plan.annualPrice,
+  );
   const taxes = 0;
   const total = subtotal;
 
