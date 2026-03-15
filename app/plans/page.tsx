@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PriceSimulator } from "@/components/PriceSimulator";
 
@@ -16,6 +16,7 @@ const INSURANCE_LABELS: Record<InsuranceType, string> = {
 export default function PlansPage() {
   const router = useRouter();
   const { plans, loading, error } = usePlans();
+  const summaryRef = useRef<HTMLElement | null>(null);
   const [selectedInsuranceType, setSelectedInsuranceType] =
     useState<InsuranceType | null>(null);
   const [periodicity, setPeriodicity] = useState<PaymentPeriodicity>("mensual");
@@ -79,6 +80,19 @@ export default function PlansPage() {
     );
   };
 
+  const onSimulate = (type: InsuranceType) => {
+    setSelectedInsuranceType(type);
+
+    if (window.matchMedia("(max-width: 1023px)").matches) {
+      requestAnimationFrame(() => {
+        summaryRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    }
+  };
+
   return (
     <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <header>
@@ -89,7 +103,7 @@ export default function PlansPage() {
       </header>
 
       <section className="mt-6 grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="min-w-0 grid gap-4 md:grid-cols-2">
           {loading ? (
             <p className="text-sm text-slate-600">Cargando planes...</p>
           ) : null}
@@ -102,7 +116,7 @@ export default function PlansPage() {
           {insuranceCards.map((card) => (
             <article
               key={card.type}
-              className="card-surface p-5 shadow-sm transition hover:shadow-md"
+              className="card-surface w-full p-5 shadow-sm transition hover:shadow-md"
             >
               {card.image ? (
                 <img
@@ -112,11 +126,11 @@ export default function PlansPage() {
                 />
               ) : null}
 
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <h3 className="text-lg font-bold text-slate-900">
+              <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
+                <h3 className="min-w-0 text-lg font-bold text-slate-900">
                   {card.title}
                 </h3>
-                <span className="rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase text-brand">
+                <span className="shrink-0 rounded-full bg-brand/10 px-3 py-1 text-xs font-semibold uppercase text-brand">
                   Esencial
                 </span>
               </div>
@@ -139,7 +153,7 @@ export default function PlansPage() {
 
               <button
                 type="button"
-                onClick={() => setSelectedInsuranceType(card.type)}
+                onClick={() => onSimulate(card.type)}
                 className="btn-primary mt-5 w-full"
               >
                 Simular
@@ -148,10 +162,12 @@ export default function PlansPage() {
           ))}
         </div>
 
-        <aside className="space-y-4">
+        <aside ref={summaryRef} className="min-w-0 space-y-4">
           <div className="rounded-xl border border-slate-200 bg-white p-4">
             <h2 className="title-primary text-base">Resumen dinámico</h2>
-            <p className="mt-2 text-sm text-slate-600">{summaryText}</p>
+            <p className="mt-2 break-words text-sm text-slate-600">
+              {summaryText}
+            </p>
           </div>
 
           {selectedPlan ? (

@@ -25,7 +25,7 @@ export function PriceSimulator({
         Plan seleccionado: {plan.name}
       </p>
 
-      <div className="mt-4 flex gap-3">
+      <div className="mt-4 flex flex-wrap gap-3">
         <button
           type="button"
           onClick={() => onPeriodicityChange("mensual")}
