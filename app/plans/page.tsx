@@ -116,14 +116,16 @@ export default function PlansPage() {
           {insuranceCards.map((card) => (
             <article
               key={card.type}
-              className="card-surface w-full p-5 shadow-sm transition hover:shadow-md"
+              className="group card-surface w-full p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-md"
             >
               {card.image ? (
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  className="mb-4 h-36 w-full rounded-lg object-cover"
-                />
+                <div className="mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="h-36 w-full object-cover brightness-95 transition-all duration-300 group-hover:scale-105 group-hover:brightness-100"
+                  />
+                </div>
               ) : null}
 
               <div className="mb-3 flex flex-wrap items-start justify-between gap-2">
@@ -154,7 +156,7 @@ export default function PlansPage() {
               <button
                 type="button"
                 onClick={() => onSimulate(card.type)}
-                className="btn-primary mt-5 w-full"
+                className="btn-primary mt-5 w-full transition-all duration-200 hover:scale-[1.03]"
               >
                 Simular
               </button>

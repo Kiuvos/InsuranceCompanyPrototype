@@ -171,13 +171,13 @@ export default function Home() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/plans"
-              className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand transition hover:bg-white/90"
+              className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand transition-all duration-200 hover:scale-[1.03] hover:bg-white/90"
             >
               Cotiza ahora
             </Link>
             <Link
               href="/checkout"
-              className="rounded-md border border-white/50 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+              className="rounded-md border border-white/50 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/10"
             >
               Ir al checkout
             </Link>
@@ -201,7 +201,7 @@ export default function Home() {
           {insuranceTypes.map((item) => (
             <article
               key={item.title}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-md"
             >
               <h3 className="text-lg font-semibold text-slate-900">
                 {item.title}
@@ -239,14 +239,16 @@ export default function Home() {
             {valueProps.map((item) => (
               <article
                 key={item.title}
-                className="rounded-xl border border-slate-200 bg-white p-5 text-center shadow-sm"
+                className="group rounded-xl border border-slate-200 bg-white p-5 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-md"
               >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-36 w-full rounded-lg object-cover"
-                  loading="lazy"
-                />
+                <div className="overflow-hidden rounded-lg">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-36 w-full object-cover brightness-95 transition-all duration-300 group-hover:scale-105 group-hover:brightness-100 pb-2"
+                    loading="lazy"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-slate-900">
                   {item.title}
                 </h3>
