@@ -4,7 +4,7 @@
     "name": "Seguro de Vida $20.000.000",
     "type": "vida",
     "description": "Protege a tu familia con una suma asegurada de $20.000.000 ante fallecimiento, incapacidad total o enfermedad grave.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida.png",
     "basePrice": 13600,
     "coverages": [
       "Muerte por cualquier causa",
@@ -72,7 +72,7 @@
     "name": "Seguro de Vida $50.000.000",
     "type": "vida",
     "description": "Respaldo sólido para tu familia con una suma asegurada de $50.000.000 ante fallecimiento, incapacidad total o enfermedad grave.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida.png",
     "basePrice": 34000,
     "coverages": [
       "Muerte por cualquier causa",
@@ -140,7 +140,7 @@
     "name": "Seguro de Vida $80.000.000",
     "type": "vida",
     "description": "Cobertura amplia de $80.000.000 para proteger el bienestar de tu familia ante cualquier imprevisto.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida.png",
     "basePrice": 54400,
     "coverages": [
       "Muerte por cualquier causa",
@@ -208,7 +208,7 @@
     "name": "Seguro de Vida $100.000.000",
     "type": "vida",
     "description": "Protección de alto valor con $100.000.000 en suma asegurada frente a fallecimiento, incapacidad o enfermedad grave.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida",
     "basePrice": 68000,
     "coverages": [
       "Muerte por cualquier causa",
@@ -276,7 +276,7 @@
     "name": "Seguro de Vida $150.000.000",
     "type": "vida",
     "description": "Cobertura superior de $150.000.000 para garantizar la estabilidad de tu familia ante cualquier eventualidad.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida",
     "basePrice": 102000,
     "coverages": [
       "Muerte por cualquier causa",
@@ -344,7 +344,7 @@
     "name": "Seguro de Vida $200.000.000",
     "type": "vida",
     "description": "Máxima protección con $200.000.000 en suma asegurada para el futuro de quienes más quieres.",
-    "image": "/insurance/vida.svg",
+    "image": "/insurance/vida",
     "basePrice": 132000,
     "coverages": [
       "Muerte por cualquier causa",
@@ -412,7 +412,7 @@
     "name": "Poliza de Billetera - Basico",
     "type": "billetera",
     "description": "Protege tu billetera, documentos y medios de pago frente a robo, fraude y gastos derivados del hurto.",
-    "image": "/insurance/billetera.svg",
+    "image": "/insurance/billetera.png",
     "basePrice": 13500,
     "annualPrice": 150000,
     "coverages": [
@@ -461,7 +461,7 @@
     "name": "Poliza de Billetera - Estandar",
     "type": "billetera",
     "description": "Suma protección frente a fraude, robo y reposición de elementos esenciales de tu billetera.",
-    "image": "/insurance/billetera.svg",
+    "image": "/insurance/billetera.png",
     "basePrice": 24000,
     "coverages": [
       "Robo de billetera y documentos",
@@ -505,7 +505,7 @@
     "name": "Poliza de Billetera - Premium",
     "type": "billetera",
     "description": "Máxima protección para tus documentos, efectivo, tarjetas y asistencias derivadas de un robo.",
-    "image": "/insurance/billetera.svg",
+    "image": "/insurance/billetera.png",
     "basePrice": 36000,
     "coverages": [
       "Robo con cobertura ampliada de contenido",
@@ -564,7 +564,7 @@
       }
     ],
     "description": "Cuida a tu mascota con coberturas esenciales de salud y respaldo civil básico.",
-    "image": "/insurance/mascota.webp",
+    "image": "/insurance/mascotas.png",
     "basePrice": 18000,
     "coverages": [
       "Gastos medicos por accidente: 1 evento por ano hasta $250.000",
@@ -603,7 +603,7 @@
       }
     ],
     "description": "Más tranquilidad para tu mascota con coberturas ampliadas y mejor protección civil.",
-    "image": "/insurance/mascota.webp",
+    "image": "/insurance/mascotas.png",
     "basePrice": 25200,
     "coverages": [
       "Gastos medicos por accidente: 2 eventos por ano hasta $250.000 por evento",
@@ -642,7 +642,7 @@
       }
     ],
     "description": "Cobertura integral para emergencias, bienestar y responsabilidad civil de alto nivel.",
-    "image": "/insurance/mascota.webp",
+    "image": "/insurance/mascotas.png",
     "basePrice": 32400,
     "coverages": [
       "Gastos medicos por accidente: 3 eventos por ano hasta $250.000 por evento",

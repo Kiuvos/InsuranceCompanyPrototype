@@ -48,12 +48,12 @@ export default function Home() {
 
   const valueProps = [
     {
-      image: "/insurance/vida.svg",
+      image: "/insurance/vida.png",
       title: "Proceso rápido y 100% digital",
       text: "Simula tu seguro, elige el plan que mejor se adapte a ti y completa tu compra en pocos minutos desde cualquier dispositivo.",
     },
     {
-      image: "/insurance/billetera.svg",
+      image: "/insurance/billetera.png",
       title: "Respaldo cuando más lo necesitas",
       text: "Nuestros planes están diseñados para ayudarte en momentos difíciles, brindando apoyo económico y protección ante eventos inesperados.",
     },
@@ -256,6 +256,18 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-4 pb-2 sm:px-6 lg:px-8">
+        <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand/10 via-transparent to-brand/10" />
+          <img
+            src="/landing/banner_horizontal.png"
+            alt="Banner promocional de Asegurat"
+            className="relative block h-auto w-full max-w-full object-cover brightness-95 saturate-105 transition-all duration-300 group-hover:scale-[1.03] group-hover:brightness-105 group-hover:saturate-[1.2]"
+            loading="lazy"
+          />
         </div>
       </section>
 
