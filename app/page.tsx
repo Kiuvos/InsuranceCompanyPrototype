@@ -160,35 +160,46 @@ export default function Home() {
   return (
     <main>
       <section className="bg-brand text-white pb-14">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-20 sm:px-6 lg:px-8">
-          <p className="w-fit rounded-full bg-white/15 px-4 py-1 text-sm font-medium">
-            Asegurat Ltda
-          </p>
-          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            Protege lo que más importa en tu vida.
-          </h1>
-          <p className="max-w-xl text-lg text-white/90">
-            Seguros simples, rápidos y diseñados para tu tranquilidad. Cotiza tu
-            seguro en menos de 2 minutos.
-          </p>
-          <p className="max-w-3xl text-base text-white/85">
-            Contrata seguros de vida, protección para tu billetera o cobertura
-            para tu mascota en minutos. Sin procesos complicados y con respaldo
-            inmediato cuando más lo necesitas.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/plans"
-              className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand transition-all duration-200 hover:scale-[1.03] hover:bg-white/90"
-            >
-              Cotiza ahora
-            </Link>
-            <Link
-              href="/checkout"
-              className="rounded-md border border-white/50 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/10"
-            >
-              Ir al checkout
-            </Link>
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8">
+          <div className="flex flex-col gap-6">
+            <p className="w-fit rounded-full bg-white/15 px-4 py-1 text-sm font-medium">
+              Asegurat Ltda
+            </p>
+            <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight sm:text-5xl">
+              Protege lo que más importa en tu vida.
+            </h1>
+            <p className="max-w-xl text-lg text-white/90">
+              Seguros simples, rápidos y diseñados para tu tranquilidad. Cotiza
+              tu seguro en menos de 2 minutos.
+            </p>
+            <p className="max-w-3xl text-base text-white/85">
+              Contrata seguros de vida, protección para tu billetera o cobertura
+              para tu mascota en minutos. Sin procesos complicados y con
+              respaldo inmediato cuando más lo necesitas.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/plans"
+                className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand transition-all duration-200 hover:scale-[1.03] hover:bg-white/90"
+              >
+                Cotiza ahora
+              </Link>
+              <Link
+                href="/checkout"
+                className="rounded-md border border-white/50 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:scale-[1.03] hover:bg-white/10"
+              >
+                Ir al checkout
+              </Link>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border border-white/25 bg-white/10 shadow-lg backdrop-blur-sm">
+            <img
+              src="/landing/banner_principal.jpg"
+              alt="Familia protegida con seguros Asegurat"
+              className="h-64 w-full object-cover sm:h-80 lg:h-[420px]"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>
