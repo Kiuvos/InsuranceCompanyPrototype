@@ -119,7 +119,11 @@ export default function Home() {
 
   useEffect(() => {
     const syncVisibleCount = () => {
-      setVisibleCount(window.innerWidth < 768 ? 1 : 3);
+      const nextVisibleCount = window.innerWidth < 768 ? 1 : 3;
+      setVisibleCount(nextVisibleCount);
+      setIdx(0);
+      setAnimating(false);
+      requestAnimationFrame(() => setAnimating(true));
     };
 
     syncVisibleCount();
@@ -141,7 +145,8 @@ export default function Home() {
   const handleTransitionEnd = () => {
     if (idx >= testimonials.length) {
       setAnimating(false);
-      setIdx(idx - testimonials.length);
+      setIdx((prev) => prev - testimonials.length);
+      requestAnimationFrame(() => setAnimating(true));
     }
   };
 
