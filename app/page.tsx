@@ -51,17 +51,17 @@ export default function Home() {
 
   const valueProps = [
     {
-      image: "/insurance/vida.png",
+      image: "/landing/rapidez.jpg",
       title: "Proceso rápido y 100% digital",
       text: "Simula tu seguro, elige el plan que mejor se adapte a ti y completa tu compra en pocos minutos desde cualquier dispositivo.",
     },
     {
-      image: "/insurance/billetera.png",
+      image: "/landing/respaldo.jpg",
       title: "Respaldo cuando más lo necesitas",
       text: "Nuestros planes están diseñados para ayudarte en momentos difíciles, brindando apoyo económico y protección ante eventos inesperados.",
     },
     {
-      image: "/insurance/mascota.webp",
+      image: "/landing/flexibility.jpg",
       title: "Flexibilidad para elegir tu plan",
       text: "Cada persona tiene necesidades distintas. Por eso puedes elegir entre diferentes niveles de cobertura y adaptar el seguro a lo que realmente necesitas proteger.",
     },
