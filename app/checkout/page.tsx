@@ -7,6 +7,7 @@ import { getPlans, processCheckout } from "@/services/api";
 import { formatCOP, getPricingBreakdown } from "@/modules/checkout/pricing";
 import {
   CheckoutPersonalData,
+  DeclarationData,
   InsuranceType,
   PaymentPeriodicity,
   PlanExtraDataField,
@@ -69,6 +70,13 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
   const [extraDataValues, setExtraDataValues] = useState<
     Record<string, string>
   >({});
+  const [declarationData, setDeclarationData] = useState<DeclarationData>({
+    weight: "",
+    height: "",
+    diagnosedDiseaseLastFiveYears: "",
+    scheduledSurgeryNextSixMonths: "",
+    underTreatmentOrMedication: "",
+  });
   const [habeasDataAccepted, setHabeasDataAccepted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPlanModal, setShowPlanModal] = useState(false);
@@ -122,6 +130,29 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
   const validateStep = () => {
     setError(null);
+
+    if (step === 1 && selectedPlan?.declaration) {
+      const {
+        weight,
+        height,
+        diagnosedDiseaseLastFiveYears,
+        scheduledSurgeryNextSixMonths,
+        underTreatmentOrMedication,
+      } = declarationData;
+
+      if (
+        !weight ||
+        !height ||
+        !diagnosedDiseaseLastFiveYears ||
+        !scheduledSurgeryNextSixMonths ||
+        !underTreatmentOrMedication
+      ) {
+        setError(
+          "Completa la Declaración de Asegurabilidad antes de continuar",
+        );
+        return false;
+      }
+    }
 
     if (step === 2) {
       const {
@@ -222,6 +253,7 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
         paymentMethod,
         personalData,
         extraData: extraDataValues,
+        declarationData: selectedPlan.declaration ? declarationData : undefined,
       });
 
       if (response.ok) {
@@ -410,6 +442,12 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
                     {selectedPlan.declaration ? (
                       <div className="mt-4">
+                        <p className="mb-2 text-xs text-brand">
+                          <strong>
+                            Debes diligenciar la declaración para continuar al
+                            siguiente paso.
+                          </strong>
+                        </p>
                         <button
                           type="button"
                           onClick={() => setShowPlanModal(true)}
@@ -450,6 +488,120 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                       </div>
                     ) : null}
 
+                    <div className="mt-4 rounded-lg border border-slate-200 p-4">
+                      <h4 className="text-sm font-semibold text-slate-900">
+                        Información de salud del asegurado
+                      </h4>
+                      <div className="mt-3 grid gap-3 md:grid-cols-2">
+                        <div className="space-y-1">
+                          <p className="text-xs text-slate-600">Peso (kg)</p>
+                          <input
+                            type="number"
+                            min="1"
+                            value={declarationData.weight}
+                            onChange={(event) =>
+                              setDeclarationData((prev) => ({
+                                ...prev,
+                                weight: event.target.value,
+                              }))
+                            }
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-xs text-slate-600">
+                            Estatura (cm)
+                          </p>
+                          <input
+                            type="number"
+                            min="1"
+                            value={declarationData.height}
+                            onChange={(event) =>
+                              setDeclarationData((prev) => ({
+                                ...prev,
+                                height: event.target.value,
+                              }))
+                            }
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <p className="text-xs text-slate-600">
+                            ¿Ha tenido enfermedad diagnosticada en los últimos 5
+                            años?
+                          </p>
+                          <select
+                            value={
+                              declarationData.diagnosedDiseaseLastFiveYears
+                            }
+                            onChange={(event) =>
+                              setDeclarationData((prev) => ({
+                                ...prev,
+                                diagnosedDiseaseLastFiveYears: event.target
+                                  .value as "si" | "no" | "",
+                              }))
+                            }
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          >
+                            <option value="" disabled>
+                              Selecciona una opción
+                            </option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+
+                        <div className="space-y-1">
+                          <p className="text-xs text-slate-600">
+                            ¿Tiene alguna cirugía programada para los próximos 6
+                            meses?
+                          </p>
+                          <select
+                            value={
+                              declarationData.scheduledSurgeryNextSixMonths
+                            }
+                            onChange={(event) =>
+                              setDeclarationData((prev) => ({
+                                ...prev,
+                                scheduledSurgeryNextSixMonths: event.target
+                                  .value as "si" | "no" | "",
+                              }))
+                            }
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          >
+                            <option value="" disabled>
+                              Selecciona una opción
+                            </option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+
+                        <div className="space-y-1">
+                          <p className="text-xs text-slate-600">
+                            ¿Está en tratamiento o toma algún medicamento?
+                          </p>
+                          <select
+                            value={declarationData.underTreatmentOrMedication}
+                            onChange={(event) =>
+                              setDeclarationData((prev) => ({
+                                ...prev,
+                                underTreatmentOrMedication: event.target
+                                  .value as "si" | "no" | "",
+                              }))
+                            }
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          >
+                            <option value="" disabled>
+                              Selecciona una opción
+                            </option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
                     <button
                       type="button"
                       onClick={() => setShowPlanModal(false)}
@@ -469,128 +621,158 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                 Paso 2: Datos personales
               </h2>
               <div className="grid gap-4 md:grid-cols-2">
-                <input
-                  value={personalData.fullName}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      fullName: event.target.value,
-                    }))
-                  }
-                  placeholder="Nombres y apellidos"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <select
-                  value={personalData.documentType}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      documentType: event.target.value,
-                    }))
-                  }
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                >
-                  <option value="">Tipo de documento</option>
-                  <option value="cc">Cédula de ciudadanía</option>
-                  <option value="ce">Cédula de extranjería</option>
-                  <option value="ti">Tarjeta de identidad</option>
-                  <option value="pasaporte">Pasaporte</option>
-                </select>
-                <input
-                  value={personalData.documentNumber}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      documentNumber: event.target.value,
-                    }))
-                  }
-                  placeholder="Número de documento"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <input
-                  value={personalData.birthDate}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      birthDate: event.target.value,
-                    }))
-                  }
-                  type="date"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <input
-                  value={personalData.occupation}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      occupation: event.target.value,
-                    }))
-                  }
-                  placeholder="Ocupación"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <select
-                  value={personalData.maritalStatus}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      maritalStatus: event.target.value,
-                    }))
-                  }
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                >
-                  <option value="">Estado civil</option>
-                  <option value="soltero">Soltero</option>
-                  <option value="casado">Casado</option>
-                  <option value="union_libre">Unión libre</option>
-                  <option value="divorciado">Divorciado</option>
-                  <option value="viudo">Viudo</option>
-                </select>
-                <input
-                  value={personalData.address}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      address: event.target.value,
-                    }))
-                  }
-                  placeholder="Dirección de domicilio"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <input
-                  value={personalData.email}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      email: event.target.value,
-                    }))
-                  }
-                  type="email"
-                  placeholder="Correo electrónico"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <input
-                  value={personalData.city}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      city: event.target.value,
-                    }))
-                  }
-                  placeholder="Ciudad"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
-                <input
-                  value={personalData.phone}
-                  onChange={(event) =>
-                    setPersonalData((prev) => ({
-                      ...prev,
-                      phone: event.target.value,
-                    }))
-                  }
-                  placeholder="Celular"
-                  className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                />
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Nombres y apellidos</p>
+                  <input
+                    value={personalData.fullName}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        fullName: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Tipo de documento</p>
+                  <select
+                    value={personalData.documentType}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        documentType: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    aria-placeholder="selecciona "
+                  >
+                    <option value="" disabled>
+                      Selecciona una opción
+                    </option>
+                    <option value="cc">Cédula de ciudadanía</option>
+                    <option value="ce">Cédula de extranjería</option>
+                    <option value="ti">Tarjeta de identidad</option>
+                    <option value="pasaporte">Pasaporte</option>
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Número de documento</p>
+                  <input
+                    value={personalData.documentNumber}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        documentNumber: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Fecha de nacimiento</p>
+                  <input
+                    value={personalData.birthDate}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        birthDate: event.target.value,
+                      }))
+                    }
+                    type="date"
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Ocupación</p>
+                  <input
+                    value={personalData.occupation}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        occupation: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Estado civil</p>
+                  <select
+                    value={personalData.maritalStatus}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        maritalStatus: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  >
+                    <option value="" disabled>
+                      Selecciona una opción
+                    </option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="union_libre">Unión libre</option>
+                    <option value="divorciado">Divorciado</option>
+                    <option value="viudo">Viudo</option>
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">
+                    Dirección de domicilio
+                  </p>
+                  <input
+                    value={personalData.address}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        address: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Correo electrónico</p>
+                  <input
+                    value={personalData.email}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        email: event.target.value,
+                      }))
+                    }
+                    type="email"
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Ciudad</p>
+                  <input
+                    value={personalData.city}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        city: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Celular</p>
+                  <input
+                    value={personalData.phone}
+                    onChange={(event) =>
+                      setPersonalData((prev) => ({
+                        ...prev,
+                        phone: event.target.value,
+                      }))
+                    }
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  />
+                </div>
               </div>
 
               {selectedPlanExtraDataFields.length ? (
@@ -602,8 +784,40 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                     {selectedPlanExtraDataFields.map((field) => {
                       if (field.type === "select") {
                         return (
-                          <select
-                            key={field.key}
+                          <div key={field.key} className="space-y-1">
+                            <p className="text-xs text-slate-600">
+                              {field.label}
+                            </p>
+                            <select
+                              value={extraDataValues[field.key] ?? ""}
+                              onChange={(event) =>
+                                setExtraDataValues((prev) => ({
+                                  ...prev,
+                                  [field.key]: event.target.value,
+                                }))
+                              }
+                              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                            >
+                              <option value="" disabled>
+                                Selecciona una opción
+                              </option>
+                              {(field.options ?? []).map((option) => (
+                                <option key={option.value} value={option.value}>
+                                  {option.label}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div key={field.key} className="space-y-1">
+                          <p className="text-xs text-slate-600">
+                            {field.label}
+                          </p>
+                          <input
+                            type={field.type === "number" ? "number" : "text"}
                             value={extraDataValues[field.key] ?? ""}
                             onChange={(event) =>
                               setExtraDataValues((prev) => ({
@@ -611,32 +825,9 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                                 [field.key]: event.target.value,
                               }))
                             }
-                            className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                          >
-                            <option value="">{field.label}</option>
-                            {(field.options ?? []).map((option) => (
-                              <option key={option.value} value={option.value}>
-                                {option.label}
-                              </option>
-                            ))}
-                          </select>
-                        );
-                      }
-
-                      return (
-                        <input
-                          key={field.key}
-                          type={field.type === "number" ? "number" : "text"}
-                          value={extraDataValues[field.key] ?? ""}
-                          onChange={(event) =>
-                            setExtraDataValues((prev) => ({
-                              ...prev,
-                              [field.key]: event.target.value,
-                            }))
-                          }
-                          placeholder={field.label}
-                          className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                        />
+                            className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                          />
+                        </div>
                       );
                     })}
                   </div>
@@ -735,62 +926,78 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
               {paymentMethod === "tarjeta" ? (
                 <div className="grid gap-4 md:grid-cols-2">
-                  <input
-                    value={cardData.cardNumber}
-                    onChange={(event) =>
-                      setCardData((prev) => ({
-                        ...prev,
-                        cardNumber: event.target.value,
-                      }))
-                    }
-                    placeholder="Número de tarjeta"
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                  />
-                  <input
-                    value={cardData.cardName}
-                    onChange={(event) =>
-                      setCardData((prev) => ({
-                        ...prev,
-                        cardName: event.target.value,
-                      }))
-                    }
-                    placeholder="Nombre del titular"
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                  />
-                  <input
-                    value={cardData.cardExpiry}
-                    onChange={(event) =>
-                      setCardData((prev) => ({
-                        ...prev,
-                        cardExpiry: event.target.value,
-                      }))
-                    }
-                    placeholder="MM/AA"
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                  />
-                  <input
-                    value={cardData.cardCvv}
-                    onChange={(event) =>
-                      setCardData((prev) => ({
-                        ...prev,
-                        cardCvv: event.target.value,
-                      }))
-                    }
-                    placeholder="CVV"
-                    className="rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                  />
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Número de tarjeta</p>
+                    <input
+                      value={cardData.cardNumber}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          cardNumber: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Nombre del titular</p>
+                    <input
+                      value={cardData.cardName}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          cardName: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">
+                      Fecha de vencimiento
+                    </p>
+                    <input
+                      value={cardData.cardExpiry}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          cardExpiry: event.target.value,
+                        }))
+                      }
+                      placeholder="MM/AA"
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">CVV</p>
+                    <input
+                      value={cardData.cardCvv}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          cardCvv: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
                 </div>
               ) : (
-                <select
-                  value={pseBank}
-                  onChange={(event) => setPseBank(event.target.value)}
-                  className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                >
-                  <option value="">Selecciona banco</option>
-                  <option value="bancolombia">Bancolombia</option>
-                  <option value="davivienda">Davivienda</option>
-                  <option value="bbva">BBVA</option>
-                </select>
+                <div className="space-y-1">
+                  <p className="text-xs text-slate-600">Banco</p>
+                  <select
+                    value={pseBank}
+                    onChange={(event) => setPseBank(event.target.value)}
+                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  >
+                    <option value="" disabled>
+                      Selecciona una opción
+                    </option>
+                    <option value="bancolombia">Bancolombia</option>
+                    <option value="davivienda">Davivienda</option>
+                    <option value="bbva">BBVA</option>
+                  </select>
+                </div>
               )}
 
               <label className="flex items-start gap-2 text-sm text-slate-700">

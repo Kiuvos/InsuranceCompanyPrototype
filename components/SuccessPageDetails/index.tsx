@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { DeclarationData } from "@/types/plan";
 
 type SuccessPageDetailsProps = {
   policy: string;
@@ -11,6 +12,7 @@ type SuccessPageDetailsProps = {
 
 type LastPurchase = {
   extraData?: Record<string, string>;
+  declarationData?: DeclarationData;
 };
 
 const EXTRA_DATA_LABELS: Record<string, string> = {
@@ -35,6 +37,8 @@ export function SuccessPageDetails({
   emailSent,
 }: SuccessPageDetailsProps) {
   const [extraData, setExtraData] = useState<Record<string, string>>({});
+  const [declarationData, setDeclarationData] =
+    useState<DeclarationData | null>(null);
 
   useEffect(() => {
     const rawLastPurchase = window.localStorage.getItem(
@@ -47,14 +51,24 @@ export function SuccessPageDetails({
     try {
       const parsed = JSON.parse(rawLastPurchase) as LastPurchase;
       setExtraData(parsed.extraData ?? {});
+      setDeclarationData(parsed.declarationData ?? null);
     } catch {
       setExtraData({});
+      setDeclarationData(null);
     }
   }, []);
 
   const extraDataEntries = useMemo(
     () => Object.entries(extraData).filter(([, value]) => Boolean(value)),
     [extraData],
+  );
+  const hasDeclarationData = Boolean(
+    declarationData &&
+    declarationData.weight &&
+    declarationData.height &&
+    declarationData.diagnosedDiseaseLastFiveYears &&
+    declarationData.scheduledSurgeryNextSixMonths &&
+    declarationData.underTreatmentOrMedication,
   );
 
   return (
@@ -94,6 +108,40 @@ export function SuccessPageDetails({
                   {getReadableValue(key, value)}
                 </li>
               ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {hasDeclarationData && declarationData ? (
+          <div className="mt-4 rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
+            <h2 className="text-base font-bold text-slate-900">
+              Declaración de asegurabilidad
+            </h2>
+            <ul className="mt-2 space-y-1">
+              <li>
+                <strong>Peso:</strong> {declarationData.weight} kg
+              </li>
+              <li>
+                <strong>Estatura:</strong> {declarationData.height} cm
+              </li>
+              <li>
+                <strong>Enfermedad diagnosticada en los últimos 5 años:</strong>{" "}
+                {declarationData.diagnosedDiseaseLastFiveYears === "si"
+                  ? "Sí"
+                  : "No"}
+              </li>
+              <li>
+                <strong>Cirugía programada próximos 6 meses:</strong>{" "}
+                {declarationData.scheduledSurgeryNextSixMonths === "si"
+                  ? "Sí"
+                  : "No"}
+              </li>
+              <li>
+                <strong>En tratamiento o medicación:</strong>{" "}
+                {declarationData.underTreatmentOrMedication === "si"
+                  ? "Sí"
+                  : "No"}
+              </li>
             </ul>
           </div>
         ) : null}

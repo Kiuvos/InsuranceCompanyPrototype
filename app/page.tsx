@@ -7,6 +7,7 @@ export default function Home() {
   const insuranceTypes = [
     {
       title: "Seguro de Vida",
+      image: "/insurance/vida.png",
       description:
         "Protege el bienestar económico de tu familia frente a situaciones inesperadas. Este seguro brinda respaldo financiero en caso de fallecimiento, enfermedad grave o incapacidad.",
       extra:
@@ -20,6 +21,7 @@ export default function Home() {
     },
     {
       title: "Protección de Billetera",
+      image: "/insurance/billetera.png",
       description:
         "La pérdida o robo de documentos y tarjetas puede generar grandes inconvenientes. Con este seguro obtienes respaldo frente a fraude, pérdida de documentos o robo de pertenencias esenciales.",
       extra:
@@ -33,6 +35,7 @@ export default function Home() {
     },
     {
       title: "Seguro para Mascotas",
+      image: "/insurance/mascota.webp",
       description:
         "Tu mascota es parte de tu familia y merece el mejor cuidado. Este seguro está diseñado para proteger su bienestar y ayudarte a cubrir gastos veterinarios o situaciones imprevistas.",
       extra:
@@ -151,7 +154,7 @@ export default function Home() {
 
   return (
     <main>
-      <section className="bg-brand text-white">
+      <section className="bg-brand text-white pb-14">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-20 sm:px-6 lg:px-8">
           <p className="w-fit rounded-full bg-white/15 px-4 py-1 text-sm font-medium">
             Asegurat Ltda
@@ -187,6 +190,17 @@ export default function Home() {
 
       <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
         <h2 className="title-primary text-2xl">Tipos de seguros</h2>
+
+        <div className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand/10 via-transparent to-brand/10" />
+          <img
+            src="/landing/banner.png"
+            alt="Banner promocional de Asegurat"
+            className="relative block h-auto w-full max-w-full object-cover brightness-95 saturate-105 transition-all duration-300 group-hover:scale-[1.03] group-hover:brightness-105 group-hover:saturate-[1.2]"
+            loading="lazy"
+          />
+        </div>
+
         <p className="mt-2 max-w-3xl text-slate-600">
           Encuentra el seguro que se adapta a lo que quieres proteger.
         </p>
@@ -203,6 +217,14 @@ export default function Home() {
               key={item.title}
               className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-md"
             >
+              <div className="mb-4 overflow-hidden rounded-lg">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-36 w-full object-cover brightness-95 transition-all duration-300 hover:scale-105 hover:brightness-100"
+                  loading="lazy"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-slate-900">
                 {item.title}
               </h3>

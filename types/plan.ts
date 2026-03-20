@@ -43,12 +43,21 @@ export interface CheckoutPersonalData {
   phone: string;
 }
 
+export interface DeclarationData {
+  weight: string;
+  height: string;
+  diagnosedDiseaseLastFiveYears: "si" | "no" | "";
+  scheduledSurgeryNextSixMonths: "si" | "no" | "";
+  underTreatmentOrMedication: "si" | "no" | "";
+}
+
 export interface CheckoutPayload {
   planId: string;
   periodicity: PaymentPeriodicity;
   paymentMethod: "tarjeta" | "pse";
   personalData: CheckoutPersonalData;
   extraData?: Record<string, string>;
+  declarationData?: DeclarationData;
 }
 
 export interface CheckoutResponse {
