@@ -18,6 +18,21 @@ const steps = ["Confirmación del plan", "Datos personales", "Método de pago"];
 export default function CheckoutPage() {
   const router = useRouter();
 
+  // Texto de autorización de tratamiento de datos mejor traerlo desde el backend o un CMS en un caso real, pero para este prototipo lo dejamos hardcodeado aquí
+  const habeasDataText = `Autorización para el tratamiento de datos personales (Habeas Data)
+
+Al marcar esta casilla, autorizo de manera previa, expresa e informada a ASEGURAT LTDA para recolectar, almacenar, usar, circular y suprimir mis datos personales con las siguientes finalidades:
+
+1. Gestionar la cotización, emisión y administración de pólizas de seguro.
+2. Verificar mi identidad y validar la información suministrada.
+3. Contactarme por canales físicos o digitales para confirmar la compra y atender solicitudes.
+4. Cumplir obligaciones legales y regulatorias aplicables en Colombia.
+5. Enviarme información relacionada con el servicio contratado y novedades del producto.
+
+Como titular de los datos, conozco que puedo ejercer mis derechos de acceso, actualización, rectificación y supresión, así como revocar esta autorización cuando sea procedente, escribiendo a soporte@asegurat.co.
+
+Esta autorización se entiende otorgada únicamente para fines demostrativos dentro de este prototipo.`;
+
   const [plans, setPlans] = useState<Plan[]>([]);
   const [selectedInsuranceType, setSelectedInsuranceType] =
     useState<InsuranceType | null>(null);
@@ -54,8 +69,10 @@ export default function CheckoutPage() {
   const [extraDataValues, setExtraDataValues] = useState<
     Record<string, string>
   >({});
+  const [habeasDataAccepted, setHabeasDataAccepted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPlanModal, setShowPlanModal] = useState(false);
+  const [showHabeasDataModal, setShowHabeasDataModal] = useState(false);
 
   useEffect(() => {
     async function loadPlans() {
@@ -149,6 +166,11 @@ export default function CheckoutPage() {
           setError(`Completa el campo ${missingField.label}`);
           return false;
         }
+      }
+
+      if (!habeasDataAccepted) {
+        setError("Debes aceptar el tratamiento de datos (Habeas Data)");
+        return false;
       }
     }
 
@@ -617,6 +639,65 @@ export default function CheckoutPage() {
                         />
                       );
                     })}
+                  </div>
+                </div>
+              ) : null}
+
+              <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">
+                <label className="flex items-start gap-2 text-sm text-slate-700">
+                  <input
+                    type="checkbox"
+                    checked={habeasDataAccepted}
+                    onChange={(event) =>
+                      setHabeasDataAccepted(event.target.checked)
+                    }
+                    className="mt-1"
+                  />
+                  <span>
+                    Acepto la autorización de tratamiento de datos personales.{" "}
+                    <button
+                      type="button"
+                      onClick={() => setShowHabeasDataModal(true)}
+                      className="font-semibold text-brand underline hover:text-brand-strong"
+                    >
+                      Leer autorización
+                    </button>
+                  </span>
+                </label>
+              </div>
+
+              {showHabeasDataModal ? (
+                <div
+                  className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+                  onClick={() => setShowHabeasDataModal(false)}
+                >
+                  <div
+                    className="relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-xl bg-white p-6 shadow-xl"
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setShowHabeasDataModal(false)}
+                      className="absolute right-4 top-4 text-xl font-bold text-slate-400 hover:text-slate-700"
+                    >
+                      ✕
+                    </button>
+
+                    <h3 className="pr-8 text-base font-bold uppercase tracking-wide text-slate-900">
+                      Autorización de Tratamiento de Datos
+                    </h3>
+
+                    <div className="mt-3 whitespace-pre-line rounded-lg bg-slate-50 p-4 text-xs leading-relaxed text-slate-600">
+                      {habeasDataText}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => setShowHabeasDataModal(false)}
+                      className="btn-primary mt-6 w-full"
+                    >
+                      Cerrar
+                    </button>
                   </div>
                 </div>
               ) : null}
