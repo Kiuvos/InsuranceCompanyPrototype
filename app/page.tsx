@@ -193,7 +193,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-white/25 bg-white/10 shadow-lg backdrop-blur-sm">
+          <div className="hidden overflow-hidden rounded-2xl border border-white/25 bg-white/10 shadow-lg backdrop-blur-sm sm:block">
             <img
               src="/landing/banner_principal.jpg"
               alt="Familia protegida con seguros Asegurat"
