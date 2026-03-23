@@ -65,8 +65,23 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
     cardName: "",
     cardExpiry: "",
     cardCvv: "",
+    cardType: "",
+    installments: "",
+    phoneNumber: "",
+    postalCode: "",
+    residenceAddress: "",
   });
   const [pseBank, setPseBank] = useState("");
+  const [pseData, setPseData] = useState({
+    identificationType: "",
+    firstName: "",
+    lastName: "",
+    personType: "",
+    identificationNumber: "",
+    phoneNumber: "",
+    email: "",
+    residenceAddress: "",
+  });
   const [extraDataValues, setExtraDataValues] = useState<
     Record<string, string>
   >({});
@@ -207,20 +222,68 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
     if (step === 3) {
       if (paymentMethod === "tarjeta") {
+        const expiryValid = /^\d{2}\/\d{2}$/.test(cardData.cardExpiry);
         const complete =
           cardData.cardNumber &&
           cardData.cardName &&
           cardData.cardExpiry &&
-          cardData.cardCvv;
+          cardData.cardCvv &&
+          cardData.cardType &&
+          cardData.phoneNumber &&
+          cardData.postalCode &&
+          cardData.residenceAddress;
         if (!complete) {
           setError("Completa los datos de tarjeta");
           return false;
         }
+
+        if (!expiryValid) {
+          setError("Ingresa la fecha de vencimiento en formato MM/AA");
+          return false;
+        }
+
+        if (cardData.cardType === "credito" && !cardData.installments) {
+          setError("Selecciona el número de cuotas para tarjeta de crédito");
+          return false;
+        }
       }
 
-      if (paymentMethod === "pse" && !pseBank) {
-        setError("Selecciona un banco para PSE");
-        return false;
+      if (paymentMethod === "pse") {
+        if (!pseBank) {
+          setError("Selecciona un banco para PSE");
+          return false;
+        }
+
+        const {
+          identificationType,
+          firstName,
+          lastName,
+          personType,
+          identificationNumber,
+          phoneNumber,
+          email,
+          residenceAddress,
+        } = pseData;
+        const pseEmailValid = /.+@.+\..+/.test(email);
+
+        if (
+          !identificationType ||
+          !firstName ||
+          !lastName ||
+          !personType ||
+          !identificationNumber ||
+          !phoneNumber ||
+          !email ||
+          !residenceAddress
+        ) {
+          setError("Completa todos los datos requeridos para pago por PSE");
+          return false;
+        }
+
+        if (!pseEmailValid) {
+          setError("Ingresa un correo válido para PSE");
+          return false;
+        }
       }
 
       if (!termsAccepted) {
@@ -926,6 +989,30 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
               {paymentMethod === "tarjeta" ? (
                 <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-1 md:col-span-2">
+                    <p className="text-xs text-slate-600">Tipo de tarjeta</p>
+                    <select
+                      value={cardData.cardType}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          cardType: event.target.value,
+                          installments:
+                            event.target.value === "credito"
+                              ? prev.installments
+                              : "",
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    >
+                      <option value="" disabled>
+                        Selecciona una opción
+                      </option>
+                      <option value="debito">Débito</option>
+                      <option value="credito">Crédito</option>
+                    </select>
+                  </div>
+
                   <div className="space-y-1">
                     <p className="text-xs text-slate-600">Número de tarjeta</p>
                     <input
@@ -958,13 +1045,23 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                     </p>
                     <input
                       value={cardData.cardExpiry}
-                      onChange={(event) =>
+                      onChange={(event) => {
+                        const onlyDigits = event.target.value
+                          .replace(/\D/g, "")
+                          .slice(0, 4);
+                        const formattedExpiry =
+                          onlyDigits.length > 2
+                            ? `${onlyDigits.slice(0, 2)}/${onlyDigits.slice(2)}`
+                            : onlyDigits;
+
                         setCardData((prev) => ({
                           ...prev,
-                          cardExpiry: event.target.value,
-                        }))
-                      }
+                          cardExpiry: formattedExpiry,
+                        }));
+                      }}
                       placeholder="MM/AA"
+                      inputMode="numeric"
+                      maxLength={5}
                       className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                     />
                   </div>
@@ -981,22 +1078,226 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                       className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                     />
                   </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Número de teléfono</p>
+                    <input
+                      value={cardData.phoneNumber}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          phoneNumber: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Código postal</p>
+                    <input
+                      value={cardData.postalCode}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          postalCode: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1 md:col-span-2">
+                    <p className="text-xs text-slate-600">
+                      Dirección de residencia
+                    </p>
+                    <input
+                      value={cardData.residenceAddress}
+                      onChange={(event) =>
+                        setCardData((prev) => ({
+                          ...prev,
+                          residenceAddress: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  {cardData.cardType === "credito" ? (
+                    <div className="space-y-1 md:col-span-2">
+                      <p className="text-xs text-slate-600">Número de cuotas</p>
+                      <select
+                        value={cardData.installments}
+                        onChange={(event) =>
+                          setCardData((prev) => ({
+                            ...prev,
+                            installments: event.target.value,
+                          }))
+                        }
+                        className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                      >
+                        <option value="" disabled>
+                          Selecciona una opción
+                        </option>
+                        <option value="1">1 cuota</option>
+                        <option value="2">2 cuotas</option>
+                        <option value="3">3 cuotas</option>
+                        <option value="4">4 cuotas</option>
+                        <option value="6">6 cuotas</option>
+                        <option value="12">12 cuotas</option>
+                      </select>
+                    </div>
+                  ) : null}
                 </div>
               ) : (
-                <div className="space-y-1">
-                  <p className="text-xs text-slate-600">Banco</p>
-                  <select
-                    value={pseBank}
-                    onChange={(event) => setPseBank(event.target.value)}
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                  >
-                    <option value="" disabled>
-                      Selecciona una opción
-                    </option>
-                    <option value="bancolombia">Bancolombia</option>
-                    <option value="davivienda">Davivienda</option>
-                    <option value="bbva">BBVA</option>
-                  </select>
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div className="space-y-1 md:col-span-2">
+                    <p className="text-xs text-slate-600">Banco</p>
+                    <select
+                      value={pseBank}
+                      onChange={(event) => setPseBank(event.target.value)}
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    >
+                      <option value="" disabled>
+                        Selecciona una opción
+                      </option>
+                      <option value="bancolombia">Bancolombia</option>
+                      <option value="davivienda">Davivienda</option>
+                      <option value="bbva">BBVA</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">
+                      Tipo de identificación
+                    </p>
+                    <select
+                      value={pseData.identificationType}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          identificationType: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    >
+                      <option value="" disabled>
+                        Selecciona una opción
+                      </option>
+                      <option value="cc">Cédula de ciudadanía</option>
+                      <option value="ce">Cédula de extranjería</option>
+                      <option value="ti">Tarjeta de identidad</option>
+                      <option value="pasaporte">Pasaporte</option>
+                      <option value="nit">NIT</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Tipo de persona</p>
+                    <select
+                      value={pseData.personType}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          personType: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    >
+                      <option value="" disabled>
+                        Selecciona una opción
+                      </option>
+                      <option value="natural">Natural</option>
+                      <option value="juridica">Jurídica</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Nombres</p>
+                    <input
+                      value={pseData.firstName}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          firstName: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Apellidos</p>
+                    <input
+                      value={pseData.lastName}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          lastName: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Identificación</p>
+                    <input
+                      value={pseData.identificationNumber}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          identificationNumber: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Número de teléfono</p>
+                    <input
+                      value={pseData.phoneNumber}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          phoneNumber: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">Correo electrónico</p>
+                    <input
+                      type="email"
+                      value={pseData.email}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          email: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <p className="text-xs text-slate-600">
+                      Dirección de residencia
+                    </p>
+                    <input
+                      value={pseData.residenceAddress}
+                      onChange={(event) =>
+                        setPseData((prev) => ({
+                          ...prev,
+                          residenceAddress: event.target.value,
+                        }))
+                      }
+                      className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                    />
+                  </div>
                 </div>
               )}
 
