@@ -20,8 +20,8 @@ export default function CheckoutPage() {
   const router = useRouter();
 
   // Texto de autorización de tratamiento de datos mejor traerlo desde el backend o un CMS en un caso real, pero para este prototipo lo dejamos hardcodeado aquí
-  const habeasDataText = `Autorización para el tratamiento de datos personales (Habeas Data)
-
+  const habeasDataText = `Autorización para el tratamiento de datos personales 
+La Ley 1581 de 2012 tiene como objetivo desarrollar el derecho constitucional de todas las personas a conocer, actualizar y rectificar la información que se haya recogido sobre ellas en bases de datos o archivos, así como proteger otros derechos relacionados con la intimidad, el buen nombre y el habeas data, según los artículos 15 y 20 de la Constitución Política de Colombia.
 Al marcar esta casilla, autorizo de manera previa, expresa e informada a ASEGURAT LTDA para recolectar, almacenar, usar, circular y suprimir mis datos personales con las siguientes finalidades:
 
 1. Gestionar la cotización, emisión y administración de pólizas de seguro.
