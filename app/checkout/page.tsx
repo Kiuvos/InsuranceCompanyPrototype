@@ -42,9 +42,9 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
   const [planId, setPlanId] = useState("");
   const [periodicity, setPeriodicity] = useState<PaymentPeriodicity>("mensual");
-  const [paymentMethod, setPaymentMethod] = useState<"tarjeta" | "pse">(
-    "tarjeta",
-  );
+  const [paymentMethod, setPaymentMethod] = useState<
+    "tarjeta" | "pse" | "wompi" | "payu"
+  >("tarjeta");
   const [termsAccepted, setTermsAccepted] = useState(false);
 
   const [personalData, setPersonalData] = useState<CheckoutPersonalData>({
@@ -284,6 +284,10 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
           setError("Ingresa un correo válido para PSE");
           return false;
         }
+      }
+
+      if (paymentMethod === "wompi" || paymentMethod === "payu") {
+        // No additional fields required in this prototype. The flow continues to confirmation.
       }
 
       if (!termsAccepted) {
@@ -985,6 +989,36 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                 >
                   PSE
                 </button>
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("wompi")}
+                  className={`flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-semibold ${
+                    paymentMethod === "wompi"
+                      ? "border-brand bg-brand/10 text-brand"
+                      : "border-slate-200 bg-white text-slate-700"
+                  }`}
+                >
+                  <img
+                    src="/wompi_logo.jpg"
+                    alt="Wompi"
+                    className="h-5 w-auto rounded-sm scale-180"
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPaymentMethod("payu")}
+                  className={`flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-semibold ${
+                    paymentMethod === "payu"
+                      ? "border-brand bg-brand/10 text-brand"
+                      : "border-slate-200 bg-white text-slate-700"
+                  }`}
+                >
+                  <img
+                    src="/payu_logo.svg"
+                    alt="PayU"
+                    className="h-5 w-auto rounded-sm"
+                  />
+                </button>
               </div>
 
               {paymentMethod === "tarjeta" ? (
@@ -1149,7 +1183,7 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                     </div>
                   ) : null}
                 </div>
-              ) : (
+              ) : paymentMethod === "pse" ? (
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="space-y-1 md:col-span-2">
                     <p className="text-xs text-slate-600">Banco</p>
@@ -1298,6 +1332,12 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                       className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
                     />
                   </div>
+                </div>
+              ) : (
+                <div className="rounded-md border border-brand/20 bg-brand/10 p-3 text-sm text-brand-strong">
+                  Serás redirigido a la pasarela de pago de{" "}
+                  {paymentMethod === "wompi" ? "Wompi" : "PayU"} para finalizar
+                  el proceso.
                 </div>
               )}
 

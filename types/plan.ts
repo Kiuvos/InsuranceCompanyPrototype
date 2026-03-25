@@ -54,7 +54,7 @@ export interface DeclarationData {
 export interface CheckoutPayload {
   planId: string;
   periodicity: PaymentPeriodicity;
-  paymentMethod: "tarjeta" | "pse";
+  paymentMethod: "tarjeta" | "pse" | "wompi" | "payu";
   personalData: CheckoutPersonalData;
   extraData?: Record<string, string>;
   declarationData?: DeclarationData;
