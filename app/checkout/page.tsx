@@ -248,9 +248,13 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
         }
       }
 
-      if (paymentMethod === "pse") {
+      if (
+        paymentMethod === "pse" ||
+        paymentMethod === "wompi" ||
+        paymentMethod === "payu"
+      ) {
         if (!pseBank) {
-          setError("Selecciona un banco para PSE");
+          setError("Selecciona un banco para continuar");
           return false;
         }
 
@@ -276,18 +280,16 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
           !email ||
           !residenceAddress
         ) {
-          setError("Completa todos los datos requeridos para pago por PSE");
+          setError(
+            "Completa todos los datos requeridos para este método de pago",
+          );
           return false;
         }
 
         if (!pseEmailValid) {
-          setError("Ingresa un correo válido para PSE");
+          setError("Ingresa un correo válido");
           return false;
         }
-      }
-
-      if (paymentMethod === "wompi" || paymentMethod === "payu") {
-        // No additional fields required in this prototype. The flow continues to confirmation.
       }
 
       if (!termsAccepted) {
@@ -999,9 +1001,9 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                   }`}
                 >
                   <img
-                    src="/wompi_logo.jpg"
+                    src="/wompi_logo.svg"
                     alt="Wompi"
-                    className="h-5 w-auto rounded-sm scale-180"
+                    className="h-5 w-auto rounded-sm scale-90"
                   />
                 </button>
                 <button
@@ -1183,8 +1185,20 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                     </div>
                   ) : null}
                 </div>
-              ) : paymentMethod === "pse" ? (
+              ) : paymentMethod === "pse" ||
+                paymentMethod === "wompi" ||
+                paymentMethod === "payu" ? (
                 <div className="grid gap-4 md:grid-cols-2">
+                  <div className="rounded-md border border-brand/20 bg-brand/10 p-3 text-sm text-brand-strong md:col-span-2">
+                    Serás redirigido a la pasarela de pago de{" "}
+                    {paymentMethod === "pse"
+                      ? "PSE"
+                      : paymentMethod === "wompi"
+                        ? "Wompi"
+                        : "PayU"}{" "}
+                    para finalizar el proceso.
+                  </div>
+
                   <div className="space-y-1 md:col-span-2">
                     <p className="text-xs text-slate-600">Banco</p>
                     <select
@@ -1333,13 +1347,7 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                     />
                   </div>
                 </div>
-              ) : (
-                <div className="rounded-md border border-brand/20 bg-brand/10 p-3 text-sm text-brand-strong">
-                  Serás redirigido a la pasarela de pago de{" "}
-                  {paymentMethod === "wompi" ? "Wompi" : "PayU"} para finalizar
-                  el proceso.
-                </div>
-              )}
+              ) : null}
 
               <label className="flex items-start gap-2 text-sm text-slate-700">
                 <input
@@ -1429,13 +1437,6 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
             >
               Cambiar Plan
             </Link>
-
-            <img
-              src="/vigilado-superintendencia-financiera-de-colombia-large.png"
-              alt="Vigilado Superintendencia Financiera de Colombia"
-              className="mt-4 w-full max-w-xs object-contain"
-              loading="lazy"
-            />
           </div>
         </aside>
       </section>
