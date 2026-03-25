@@ -1361,7 +1361,15 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
 
               <div className="rounded-md border border-brand/20 bg-brand/10 p-3 text-sm text-brand-strong">
                 ¿Necesitas ayuda? Escríbenos a soporte@asegurat.co o llama al
-                +57 300 123 4567.
+                +57 300 123 4567.{" "}
+                <a
+                  href="https://wa.me/message/MQ53PWIFXL3OC1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold underline hover:text-brand"
+                >
+                  Contáctenos aquí
+                </a>
               </div>
             </div>
           ) : null}
