@@ -670,7 +670,7 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
                       onClick={() => setShowPlanModal(false)}
                       className="btn-primary mt-6 w-full"
                     >
-                      Cerrar
+                      Guardar
                     </button>
                   </div>
                 </div>
@@ -1389,6 +1389,13 @@ Esta autorización se entiende otorgada únicamente para fines demostrativos den
             >
               Cambiar Plan
             </Link>
+
+            <img
+              src="/vigilado-superintendencia-financiera-de-colombia-large.png"
+              alt="Vigilado Superintendencia Financiera de Colombia"
+              className="mt-4 w-full max-w-xs object-contain"
+              loading="lazy"
+            />
           </div>
         </aside>
       </section>

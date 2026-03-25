@@ -9,6 +9,12 @@ export function Footer() {
           <p className="mt-2 text-sm text-white/85">
             Protegemos lo que más importa para ti y tu familia.
           </p>
+          <img
+            src="/vigilado-superintendencia-financiera-de-colombia-large.png"
+            alt="Vigilado Superintendencia Financiera de Colombia"
+            className="mt-5 w-full max-w-xs object-contain invert"
+            loading="lazy"
+          />
         </section>
 
         <section>
