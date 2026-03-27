@@ -158,7 +158,7 @@ export default function PlansPage() {
                 onClick={() => onSimulate(card.type)}
                 className="btn-primary mt-5 w-full transition-all duration-200 hover:scale-[1.03]"
               >
-                Simular
+                Cotizar
               </button>
             </article>
           ))}

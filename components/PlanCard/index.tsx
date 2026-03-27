@@ -52,7 +52,7 @@ export function PlanCard({ plan, onSelect }: PlanCardProps) {
         onClick={() => onSelect(plan)}
         className="btn-primary mt-5 w-full"
       >
-        Simular
+        Cotizar
       </button>
     </article>
   );
