@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { PriceSimulator } from "@/components/PriceSimulator";
 
 import { InsuranceType, PaymentPeriodicity, Plan } from "@/types/plan";
@@ -15,7 +15,6 @@ const INSURANCE_LABELS: Record<InsuranceType, string> = {
 
 export default function PlansPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { plans, loading, error } = usePlans();
   const summaryRef = useRef<HTMLElement | null>(null);
   const [selectedInsuranceType, setSelectedInsuranceType] =
@@ -75,7 +74,9 @@ export default function PlansPage() {
   }, [periodicity, selectedPlan]);
 
   useEffect(() => {
-    const queryInsuranceType = searchParams.get("insuranceType");
+    const queryInsuranceType = new URLSearchParams(window.location.search).get(
+      "insuranceType",
+    );
     if (
       queryInsuranceType === "vida" ||
       queryInsuranceType === "billetera" ||
@@ -92,7 +93,7 @@ export default function PlansPage() {
         });
       }
     }
-  }, [searchParams]);
+  }, []);
 
   const onContinue = () => {
     if (!selectedPlan) return;
