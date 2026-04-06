@@ -182,7 +182,7 @@ export default function Home() {
                 href="/plans"
                 className="rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand transition-all duration-200 hover:scale-[1.03] hover:bg-white/90"
               >
-                Cotiza ahora
+                Cotiza y contrata ahora
               </Link>
               <Link
                 href="/checkout"

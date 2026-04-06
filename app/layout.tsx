@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { Navbar } from "@/components/Navbar";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Navbar />
         <div className="min-h-screen">{children}</div>
         <Footer />
+        <FloatingWhatsApp />
       </body>
     </html>
   );
