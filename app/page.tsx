@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function Home() {
   const insuranceTypes = [
     {
+      type: "vida",
       title: "Seguro de Vida",
       image: "/insurance/vida.png",
       description:
@@ -16,10 +17,11 @@ export default function Home() {
         "Respaldo económico para tu familia",
         "Cobertura ante enfermedades graves",
         "Protección ante incapacidad o fallecimiento",
-        "Planes flexibles que se adaptan a tu presupuesto",
+        "Cuidado integral para tu tranquilidad",
       ],
     },
     {
+      type: "billetera",
       title: "Protección de Billetera",
       image: "/insurance/billetera.png",
       description:
@@ -34,6 +36,7 @@ export default function Home() {
       ],
     },
     {
+      type: "mascota",
       title: "Seguro para Mascotas",
       image: "/insurance/mascota.webp",
       description:
@@ -255,6 +258,13 @@ export default function Home() {
                   <li key={benefit}>• {benefit}</li>
                 ))}
               </ul>
+
+              <Link
+                href={`/checkout?insuranceType=${item.type}`}
+                className="btn-primary mt-5 inline-block w-full text-center"
+              >
+                Mas información y cotización
+              </Link>
             </article>
           ))}
         </div>

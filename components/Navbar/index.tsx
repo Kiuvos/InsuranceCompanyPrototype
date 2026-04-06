@@ -108,7 +108,7 @@ export function Navbar() {
           ) : null}
 
           <Link href="/plans" className="btn-primary">
-            Cotiza ahora
+            Cotiza y contrata ahora
           </Link>
         </div>
       </div>
